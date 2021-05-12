@@ -18,7 +18,9 @@ library(RColorBrewer)
 #loading the bioassay dataset####
 ##############################################################################/
 
-
+#load the global dataset
+dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224.txt",
+                       header=T,sep=";")
 
 
 
