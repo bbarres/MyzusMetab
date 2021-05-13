@@ -22,6 +22,12 @@ library(RColorBrewer)
 dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224.txt",
                        header=T,sep=";")
 
+#because some concentration were only used for adapting the pesticide dose
+#scale. It also include repetition that were flawed because of insufficient
+#number of individual for the entire repetition or because there was a 
+#problem during the lab experiment
+dataMyMeta<-dataMyMeta[dataMyMeta$test_echec!=1,]
+
 
 
 # Pour l’analyse, nous avions décidé des critères suivants :
