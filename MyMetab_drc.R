@@ -98,9 +98,9 @@ for (i in 1: dim(table(dataMyCor$ech_id))[1]) {
   
 }
 
-
-
-
+#export the result table
+write.table(REZ, file="output/results_bioassay.txt",
+            sep="\t",quote=FALSE,row.names=FALSE)
 
 
 ##############################################################################/
