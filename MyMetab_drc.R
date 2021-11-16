@@ -46,8 +46,8 @@ for (i in 1: dim(table(ContCheData$dat_test))[1]) {
 plot(log(REZcont$LD50),ylab="Death rate")
 plot(log(REZcont$LD50.PBO),ylab="Death rate")
 
+dataMyCor<-dataMyMeta
 #to remove : 20170503, 20170312 ?, 20180320
-
 dataMyCor<-dataMyMeta[!dataMyMeta$dat_test %in% 
                         c("20170503","20170312","20180320") & 
                         dataMyMeta$ech_id!="11-0037-0001",]
