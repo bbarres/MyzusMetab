@@ -13,7 +13,7 @@ source("MyMetab_load.R")
 #Checking the quality of the control's bioassay for each date####
 ##############################################################################/
 
-#first we limit the dataset to the control clone
+#first we limit the data set to the control clone
 ContCheData<-dataMyMeta[dataMyMeta$ech_id=="11-0037-0001",]
 REZcont<-data.frame("ech_id"=as.character(),
                     "LD50"=as.character(),
