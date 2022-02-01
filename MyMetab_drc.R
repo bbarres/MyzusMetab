@@ -79,7 +79,7 @@ REZ<-data.frame("ech_id"=as.character(),
                 "EDcomp.est"=as.character(),
                 "EDcomp.pval"=as.character())
 
-pdf(file="out/figure_by_clone.pdf",height=8,width=6)
+pdf(file="output/figure_by_clone.pdf",height=8,width=6)
 nf<-layout(matrix(c(1,1,1,1,2,3),3,2,byrow=TRUE))
 for (i in 1: dim(table(dataMyCor$ech_id))[1]) {
   
