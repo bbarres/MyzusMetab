@@ -4,7 +4,6 @@
 ##############################################################################/
 ##############################################################################/
 
-
 #loading the packages necessary for the analysis
 library(drc)
 library(medrc)
@@ -15,11 +14,11 @@ library(RColorBrewer)
 
 
 ##############################################################################/
-#loading the bioassay dataset####
+#loading the bioassay data set####
 ##############################################################################/
 
-#load the global dataset
-dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224.txt",
+#load the global data set
+dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224_2.txt",
                        header=T,sep=";")
 
 #because some concentration were only used for adapting the pesticide dose

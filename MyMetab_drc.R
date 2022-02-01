@@ -55,9 +55,10 @@ dataMyCor<-dataMyMeta[!dataMyMeta$dat_test %in%
 #comparing the LD50 with or without PBO####
 ##############################################################################/
 
-#if you want the clean data set by removing problematic date
-dataMyCor<-dataMyMeta[!dataMyMeta$dat_test %in% 
-                        c("20170503","20170312","20180320"),]
+# #if you want the clean data set by removing problematic date
+# dataMyCor<-dataMyMeta[!dataMyMeta$dat_test %in% 
+#                         c("20170503","20170312","20180320"),]
+dataMyCor<-dataMyMeta
 #removing experiment with more than 20% of mortality in the control dose
 dataMyCor$mortrate<-dataMyCor$nb_mtot/(dataMyCor$nb_mtot+dataMyCor$nb_vi)
 dataMyCor$effectif<-(dataMyCor$nb_mtot+dataMyCor$nb_vi)
