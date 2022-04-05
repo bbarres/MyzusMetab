@@ -106,6 +106,7 @@ for (i in 1: dim(table(dataMyCor$ech_id))[1]) {
                        "dose","effectif")]
   temp4<-pivot_wider(temp3,names_from="dose",values_from="effectif",
                      values_fn=mean)
+  temp4[is.na(temp4)]<-0
   barplot(as.matrix(temp4[,c(5:dim(temp4)[2])]),
           col=brewer.pal(9,"Reds")[c(7,5,3)],las=2)
   tempx<-data.frame("ech_id"=names(table(dataMyCor$ech_id))[i],
