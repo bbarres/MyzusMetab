@@ -19,7 +19,7 @@ library(RColorBrewer)
 
 #load the global data set
 dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224_4.txt",
-                       header=T,sep=";")
+                       header=TRUE,sep=";")
 
 #because some concentration were only used for adapting the pesticide dose
 #scale. It also include repetition that were flawed because of insufficient
@@ -44,6 +44,11 @@ dataMyMeta<-dataMyMeta[dataMyMeta$test_echec!=1,]
 # nous supprimions parfois les données des doses extrêmes lorsque le plateau 
 # était trop grand, pour que le modèle gère mieux ces résultats. Nous faisions 
 # ça manuellement.
+
+
+#load data for the regression model
+sumDat<-read.table(file="data/summaData.txt",header=TRUE,sep="\t",
+                   stringsAsFactors=TRUE)
 
 
 
