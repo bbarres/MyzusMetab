@@ -32,6 +32,7 @@ panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
 #because we suspect collinearity between genes copy number, we 
 #first look at correlation between the different potential variable
 pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1)
+#export to .pdf 9 x 7 inches
 
 #because the correlation between copy number of the different genes
 #and level of expression of the different genes are correlated, we 
