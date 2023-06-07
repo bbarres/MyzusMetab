@@ -119,13 +119,16 @@ lines(xv,yv,col="green")
 #figure for the modPBO.1
 plot(sumDat$CY3_EXP,sumDat$LC50/sumDat$LC50.PBO,type="n",las=1)
 points(sumDat[sumDat$nAChR.81=="TT",]$CY3_EXP,
-       sumDat[sumDat$nAChR.81=="TT",]$LC50/sumDat[sumDat$nAChR.81=="TT",]$LC50.PBO,
+       sumDat[sumDat$nAChR.81=="TT",]$LC50/
+         sumDat[sumDat$nAChR.81=="TT",]$LC50.PBO,
        pch=16,col="red")
 points(sumDat[sumDat$nAChR.81=="RT",]$CY3_EXP,
-       sumDat[sumDat$nAChR.81=="RT",]$LC50/sumDat[sumDat$nAChR.81=="RT",]$LC50.PBO,
+       sumDat[sumDat$nAChR.81=="RT",]$LC50/
+         sumDat[sumDat$nAChR.81=="RT",]$LC50.PBO,
        pch=16,col="orange")
 points(sumDat[sumDat$nAChR.81=="RR",]$CY3_EXP,
-       sumDat[sumDat$nAChR.81=="RR",]$LC50/sumDat[sumDat$nAChR.81=="RR",]$LC50.PBO,
+       sumDat[sumDat$nAChR.81=="RR",]$LC50/
+         sumDat[sumDat$nAChR.81=="RR",]$LC50.PBO,
        pch=16,col="green")
 
 genoAch<-factor(rep("TT",251))
