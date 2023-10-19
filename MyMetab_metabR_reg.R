@@ -25,7 +25,7 @@ plot(Weib.m1,type="obs",add=TRUE)
 summary(Weib.m1)
 
 Micha.m1<-drm(sumDatRR$propMeta~temp$CY3_EXP,
-             data=sumDatRR,fct=MM.3())
+             data=sumDatRR,fct=MM.2())
 plot(Micha.m1)
 summary(Micha.m1)
 
@@ -34,6 +34,7 @@ ExpoDec.m1<-drm(sumDatRR$propMeta~temp$CY3_EXP,
 plot(ExpoDec.m1)
 summary(ExpoDec.m1)
 
+#Asymptotic regression model with 2 parameters
 AssyReg.m1<-drm(sumDatRR$propMeta~temp$CY3_EXP,
               data=sumDatRR,fct=AR.2())
 plot(AssyReg.m1,type="confidence",log="",col="skyblue3",lwd=3,lty=2,
@@ -44,11 +45,16 @@ plot(AssyReg.m1,type="obs",pch=19,col="green3",add=TRUE)
 summary(AssyReg.m1)
 
 
+##############################################################################/
+#END
+##############################################################################/
+
 
 ##############################################################################/
-#Negative exponential model fitting####
+#Additional code for Negative exponential model fitting####
 ##############################################################################/
 
+#adapted from https://rpubs.com/mengxu/exponential-model
 # Prepare a good inital state
 theta.0 <- max(sumDatRR$propMeta) * 1.1
 model.0 <- lm(log(-propMeta+theta.0)~CY3_EXP,data=sumDatRR)
@@ -69,7 +75,3 @@ lines(seq(0.01,20.5,by=0.05),
       col='darkgreen',lwd=3)
 summary(negExpo.m1)
 
-
-##############################################################################/
-#END
-##############################################################################/
