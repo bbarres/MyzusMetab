@@ -9,7 +9,7 @@ source("MyMetab_load.R")
 #limiting the dataset to the R81T-[RR] genotypes
 sumDatRR<-sumDat[sumDat$nAChR.81=="RR",]
 #adding a column for the proportion of LD50 linked to metabolic resistance
-sumDatRR$propMeta<-(1-(temp$LC50.PBO/temp$LC50))
+sumDatRR$propMeta<-(1-(sumDatRR$LC50.PBO/sumDatRR$LC50))
 sumDatRR<-sumDatRR[order(sumDatRR$CY3_EXP),]
 
 
@@ -18,30 +18,32 @@ sumDatRR<-sumDatRR[order(sumDatRR$CY3_EXP),]
 #Fitting a Weibull model####
 ##############################################################################/
 
-Weib.m1<-drm(sumDatRR$propMeta~temp$CY3_EXP,
+Weib.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
              data=sumDatRR,fct=W1.2())
 plot(Weib.m1,type="confidence",log="",col="blue",lwd=3,lty=2)
 plot(Weib.m1,type="obs",add=TRUE)
 summary(Weib.m1)
 
-Micha.m1<-drm(sumDatRR$propMeta~temp$CY3_EXP,
+Micha.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
              data=sumDatRR,fct=MM.2())
 plot(Micha.m1)
 summary(Micha.m1)
 
-ExpoDec.m1<-drm(sumDatRR$propMeta~temp$CY3_EXP,
+ExpoDec.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
                 data=sumDatRR,fct=EXD.3())
 plot(ExpoDec.m1)
 summary(ExpoDec.m1)
 
 #Asymptotic regression model with 2 parameters
-AssyReg.m1<-drm(sumDatRR$propMeta~temp$CY3_EXP,
+pdf(file="output/Figure_X_metaRR.pdf",width=7,height=6)
+AssyReg.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
               data=sumDatRR,fct=AR.2())
 plot(AssyReg.m1,type="confidence",log="",col="skyblue3",lwd=3,lty=2,
      xlab="CYP6CY3 expression level",
      ylab="Proportion of metabolic resistance",
      ylim=c(0,1))
 plot(AssyReg.m1,type="obs",pch=19,col="green3",add=TRUE)
+dev.off()
 summary(AssyReg.m1)
 
 
