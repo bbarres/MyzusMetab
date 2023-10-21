@@ -12,12 +12,6 @@ source("MyMetab_load.R")
 #Testing the different in LC50 with PBO####
 ##############################################################################/
 
-vioplot(log(sumDat$LC50.PBO)~sumDat$nAChR.81,log="",
-        col=c("green3","orange3","red3"),las=1)
-stripchart(log(sumDat$LC50.PBO)~sumDat$nAChR.81,vertical=TRUE,
-           method="jitter",pch=21,add=TRUE,col="black",
-           at=c(1:3),cex=0.8)
-
 #one way anova
 simp.mod<-lm(LC50.PBO~nAChR.81,data=sumDat)
 summary(simp.mod)
@@ -36,7 +30,6 @@ plot(log.mod,1)
 #Means and SE obtained by back-transformation via the delta method
 BackTrans<-emmeans(log.mod,~nAChR.81,type="response")
 
-
 #anova with Welch correction
 oneway.test(sumDat$LC50.PBO~sumDat$nAChR.81,var.equal=FALSE)
 pairwise.t.test(sumDat$LC50.PBO,sumDat$nAChR.81,
@@ -52,14 +45,26 @@ pairwise.wilcox.test(sumDat$LC50.PBO,sumDat$nAChR.81,p.adjust.method="BH")
 #Figure XX: plot of the distribution of LC50 with PBO by TSR genotype####
 ##############################################################################/
 
+pdf(file="output/Figure_X_TSRcomp.pdf",width=6,height=5.5)
+op<-par(mar=c(5.1,5.1,1.1,1.1))
 vioplot(log(sumDat$LC50.PBO)~sumDat$nAChR.81,log="",
         col=c("green3","orange3","red3"),las=1,ann=FALSE,
-        bty="l",axes=FALSE,yaxt="n")
-box(bty="l")
-
+        bty="l",axes=FALSE,yaxt="n",xaxt="n",lwd=3,
+        border=c("green4","orange4","red4"))
+axis(1,at=c(1,2,3),labels=c("[RR]","[RT]","[TT]"),lwd=3,font=2)
+axis(2,at=c(log(50),log(100),log(200),log(500),log(1000),log(2000)),
+     labels=c("50","100","200","500","1000","2000"),lwd=3,
+     las=1,font=2)
+title(xlab="Target-site resistance genotype",
+      ylab="LC50 with PBO",
+      cex.lab=1.5,font=2)
+box(bty="o",lwd=3)
 stripchart(log(sumDat$LC50.PBO)~sumDat$nAChR.81,vertical=TRUE,
-           method="jitter",pch=21,add=TRUE,col="black",
-           at=c(1:3),cex=0.8)
+           method="jitter",pch=21,add=TRUE,col="grey50",
+           at=c(1:3),cex=1.2,
+           bg="grey80")
+par(op)
+dev.off()
 
 
 ##############################################################################/
