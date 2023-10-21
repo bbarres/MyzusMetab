@@ -5,7 +5,9 @@
 ##############################################################################/
 
 #loading the packages necessary for the analysis
+library(car)
 library(drc)
+library(emmeans)
 library(medrc)
 library(plotrix)
 library(gdata)

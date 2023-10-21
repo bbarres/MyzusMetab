@@ -8,7 +8,7 @@
  collate  French_France.utf8
  ctype    French_France.utf8
  tz       Europe/Paris
- date     2023-10-20
+ date     2023-10-21
  rstudio  2023.06.0+421 Mountain Hydrangea (desktop)
  pandoc   NA
 
@@ -57,7 +57,10 @@
  sandwich       3.0-2      2022-06-15 [1] CRAN (R 4.2.1)
  scales         1.2.1      2022-08-20 [1] CRAN (R 4.2.1)
  sessioninfo    1.2.2      2021-12-06 [1] CRAN (R 4.2.0)
+ sm           * 2.2-5.7.1  2022-07-04 [1] CRAN (R 4.2.1)
  statmod        1.5.0      2023-01-06 [1] CRAN (R 4.2.2)
+ stringi        1.7.12     2023-01-11 [1] CRAN (R 4.2.2)
+ stringr        1.5.0      2022-12-02 [1] CRAN (R 4.2.2)
  survival       3.5-5      2023-03-12 [2] CRAN (R 4.3.1)
  TH.data        1.1-2      2023-04-17 [1] CRAN (R 4.2.3)
  tibble         3.2.1      2023-03-20 [1] CRAN (R 4.2.3)
@@ -65,8 +68,9 @@
  tidyselect     1.2.0      2022-10-10 [1] CRAN (R 4.2.1)
  utf8           1.2.3      2023-01-31 [1] CRAN (R 4.2.2)
  vctrs          0.6.4      2023-10-12 [1] CRAN (R 4.3.1)
+ vioplot      * 0.4.0      2022-12-09 [1] CRAN (R 4.2.2)
  withr          2.5.1      2023-09-26 [1] CRAN (R 4.3.1)
- zoo            1.8-12     2023-04-13 [1] CRAN (R 4.2.3)
+ zoo          * 1.8-12     2023-04-13 [1] CRAN (R 4.2.3)
 
  [1] C:/Users/benoi/AppData/Local/R/win-library/4.3
  [2] C:/Program Files/R/R-4.3.1/library
