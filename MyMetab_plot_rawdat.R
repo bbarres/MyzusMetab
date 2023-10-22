@@ -9,128 +9,83 @@ source("MyMetab_load.R")
 
 
 ##############################################################################/
-#Correlation between LD50 with or without PBO####
+#Figure XX: Correlation between LD50 with or without PBO####
 ##############################################################################/
 
-#one way anova
-simp.mod<-lm(LC50.PBO~nAChR.81,data=sumDat)
-summary(simp.mod)
-#post hoc tests
-TukeyHSD(aov(simp.mod))
-plot(simp.mod,1) #seems there is different variance between group
-#testing heteroscedasticity
-leveneTest(LC50.PBO~nAChR.81,data=sumDat) #there is heteroscedasticity
+#investigating the correlation between thiacloprid LC50 with or without PBO
+withwith.mod<-lm(sumDat$LC50.PBO~sumDat$LC50)
+summary(withwith.mod)
 
-#log transformation to correct for heteroscedasticity
-log.mod<-lm(log(LC50.PBO)~nAChR.81,data=sumDat)
-summary(log.mod)
-#post hoc tests
-TukeyHSD(aov(log.mod))
-plot(log.mod,1)
-#Means and SE obtained by back-transformation via the delta method
-BackTrans<-emmeans(log.mod,~nAChR.81,type="response")
-
-#anova with Welch correction
-oneway.test(sumDat$LC50.PBO~sumDat$nAChR.81,var.equal=FALSE)
-pairwise.t.test(sumDat$LC50.PBO,sumDat$nAChR.81,
-                pool.sd=FALSE,p.adjust.method="BH")
-
-#another more conservative methods: non parametric test
-kruskal.test((sumDat$LC50.PBO)~sumDat$nAChR.81)
-#pairwise test
-pairwise.wilcox.test(sumDat$LC50.PBO,sumDat$nAChR.81,p.adjust.method="BH")
-
-
-##############################################################################/
-#LC50 dumbellplot with or without PBO####
-##############################################################################/
-
-#this function was retrieved from:
-#https://r-coder.com/dot-plot-r/?utm_content=cmp-true
-
-# v1: numeric variable
-# v2: numeric variable
-# group: vector (numeric or character) or a factor containing groups
-# labels: labels for the dot chart
-# segments: whether to add segments (TRUE) or not (FALSE)
-# text: whether to add text (TRUE) or not (FALSE)
-# pch: symbol
-# col1: color of the variable v1. If you want to
-# add group colors add them here
-# col1: color of the variable v2
-# pt.cex: size of the points
-# segcol: color of the segment
-# lwd: width of the segment
-# ... : additional arguments to be passed to dotchart function
-
-dumbbell <- function(v1, v2, group = rep(1, length(v1)), labels = NULL,
-                     segments = FALSE, text = FALSE, pch = 19,
-                     colv1 = 1, colv2 = 1, pt.cex = 1, segcol = 1,
-                     lwd = 1,logdum="", ...) {
-  
-  o <- sort.list(as.numeric(group), decreasing = TRUE)
-  group <- group[o]
-  offset <- cumsum(c(0, diff(as.numeric(group)) != 0))
-  y <- 1L:length(v1) + 2 * offset
-  
-  dotchart(v1, labels = labels, color = colv1, xlim = range(v1, v2) + c(-2, 2),
-           groups = group, pch = pch, pt.cex = pt.cex,log=logdum)
-  
-  if(segments == TRUE) {
-    for(i in 1:length(v1)) {
-      segments(min(v2[i], v1[i]), y[i],
-               max(v2[i], v1[i]), y[i],
-               lwd = lwd, col = segcol) 
-    }
-  }
-  
-  for(i in 1:length(v1)){
-    points(v2[i], y[i], pch = pch, cex = pt.cex, col = colv2)
-    points(v1[i], y[i], pch = pch, cex = pt.cex, col = colv1)
-  }
-  
-  if(text == TRUE) {
-    for(i in 1:length(v1)) {
-      text(min(v2[i ], v1[i]) - 1.5, y[i],
-           labels = min(v2[i], v1[i]))
-      text(max(v2[i], v1[i]) + 1.5, y[i],
-           labels = max(v2[i], v1[i])) 
-    }
-  }
-}
-
-
-
-x <- sumDat[order(sumDat$LC50), ] 
-
-dumbbell(v1 = x$LC50.PBO, v2 = x$LC50, group = x$nAChR.81,
-         text = TRUE, segcol = "gray", lwd = 3, labels = x$clone.ID,
-         segments = TRUE, pch = 19, pt.cex = 1.5, colv1 = 1, colv2 = "blue",
-         logdum="x")
-
-
-#pdf(file="output/Figure_X_TSRcomp.pdf",width=6,height=5.5)
-#op<-par(mar=c(5.1,5.1,1.1,1.1))
-col=c("green3","orange3","red3")
-c("green4","orange4","red4"))
-
-dotchart(sort(sumDat$LC50),
-         groups=sumDat$nAChR.81[order(sumDat$LC50)],
-         labels=sumDat$clone.ID[order(sumDat$LC50)],log="x")
-dotchart(sumDat$LC50.PBO[order(sumDat$LC50)],add=TRUE)
-
-axis(1,at=c(1,2,3),labels=c("[RR]","[RT]","[TT]"),lwd=3,font=2)
-axis(2,at=c(log(50),log(100),log(200),log(500),log(1000),log(2000)),
+#producing the plot
+pdf(file="output/Figure_X_CorrWithWitho.pdf",width=6,height=5.5)
+op<-par(mar=c(5.1,5.1,1.1,1.1))
+colovec=c("red3","orange3","green3")
+plot(sumDat$LC50.PBO~sumDat$LC50,log="xy",pch=21,
+     bg=colovec[as.numeric(dotdat$nAChR.81)],las=1,
+     ann=FALSE,axes=FALSE,cex=2)
+abline(lm(sumDat$LC50.PBO~sumDat$LC50),
+       col="black",lwd=4,lty=2,untf=TRUE)
+points(sumDat$LC50.PBO~sumDat$LC50,pch=21,cex=2,
+       bg=colovec[as.numeric(dotdat$nAChR.81)])
+axis(1,at=c(50,100,200,500,1000,2500,7500,20000),lwd=3,font=2)
+axis(2,at=c(50,100,200,500,1000,2000),
      labels=c("50","100","200","500","1000","2000"),lwd=3,
      las=1,font=2)
-title(xlab="Target-site resistance genotype",
-      ylab="LC50 with PBO",
+legend(50,2500,pch=21,pt.cex=2,pt.bg=colovec,
+       legend=c("[TT]","[RT]","[RR]"),y.intersp=1.2,
+       bty="n")
+title(xlab="Thiacloprid LC50 without PBO",
+      ylab="Thiacloprid LC50 with PBO",
       cex.lab=1.5,font=2)
 box(bty="o",lwd=3)
-stripchart(log(sumDat$LC50.PBO)~sumDat$nAChR.81,vertical=TRUE,
-           method="jitter",pch=21,add=TRUE,col="grey50",
-           at=c(1:3),cex=1.2,
-           bg="grey80")
+par(op)
+dev.off()
+
+
+##############################################################################/
+#Figure XX: LC50 dumbellplot with or without PBO####
+##############################################################################/
+
+#this code was adapted from: 
+#https://r-coder.com/dot-plot-r/?utm_content=cmp-true
+
+pdf(file="output/Figure_X_LC50withwith.pdf",width=9,height=7)
+op<-par(mar=c(5.1,4.1,1.1,1.1))
+colovec=c("red3","orange3","green3")
+dotdat<-sumDat
+dotdat$nAChR.81<-factor(dotdat$nAChR.81,levels=c("TT","RT","RR"))
+levels(dotdat$nAChR.81)<-c("[TT]","[RT]","[RR]")
+#ordering the data by increasing LC50
+dotdat<-dotdat[order(dotdat$nAChR.81,-dotdat$LC50,decreasing=TRUE),]
+#ordPlot<-sort.list(as.numeric(dotdat$nAChR.81),decreasing=TRUE)
+ycorec<-cumsum(c(0,diff(as.numeric(dotdat$nAChR.81)) != 0))
+ycoor<-1:dim(dotdat)[1] + 2*ycorec
+
+dotchart(dotdat$LC50,
+         groups=dotdat$nAChR.81,
+         labels=dotdat$clone.ID,
+         xlim=range(dotdat$LC50.PBO,dotdat$LC50)+c(-10,1000),
+         col=colovec[as.numeric(dotdat$nAChR.81)],
+         log="x",pch="")
+
+for(i in 1:dim(dotdat)[1]) {
+  segments(min(dotdat$LC50.PBO[i],dotdat$LC50[i]),ycoor[i],
+           max(dotdat$LC50.PBO[i],dotdat$LC50[i]),ycoor[i],
+           lwd=5,col=colovec[as.numeric(dotdat$nAChR.81)][i]) 
+}
+
+points(dotdat$LC50,ycoor,pch=19,cex=2)
+points(dotdat$LC50.PBO,ycoor,pch=21,cex=2,bg="white")
+
+legend(2500,10,legend=c("without PBO","with PBO"),bg="white",
+       pch=c(19,21),col=c("black","black"),pt.bg=c("black","white"),
+       title="Bioassays:",title.font=2,title.cex=1.2,pt.cex=2,
+       y.intersp=1.2)
+
+title(xlab="Thiacloprid LC50 (mg/L)",
+      ylab="",
+      cex.lab=1.5,font=2)
+
 par(op)
 dev.off()
 
