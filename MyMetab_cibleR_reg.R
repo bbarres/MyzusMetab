@@ -22,13 +22,21 @@ plot(simp.mod,1) #seems there is different variance between group
 leveneTest(LC50.PBO~nAChR.81,data=sumDat) #there is heteroscedasticity
 
 #log transformation to correct for heteroscedasticity
+leveneTest(log(LC50.PBO)~nAChR.81,data=sumDat) #ok now
 log.mod<-lm(log(LC50.PBO)~nAChR.81,data=sumDat)
+anova(log.mod) #the group has an effect on the LC50.PBO
 summary(log.mod)
 #post hoc tests
 TukeyHSD(aov(log.mod))
 plot(log.mod,1)
 #Means and SE obtained by back-transformation via the delta method
 BackTrans<-emmeans(log.mod,~nAChR.81,type="response")
+BackTrans
+
+
+##############################################################################/
+#Additional testing the different in LC50 with PBO####
+##############################################################################/
 
 #anova with Welch correction
 oneway.test(sumDat$LC50.PBO~sumDat$nAChR.81,var.equal=FALSE)
