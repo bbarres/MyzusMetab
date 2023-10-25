@@ -64,8 +64,8 @@ axis(2,at=c(log(50),log(100),log(200),log(500),log(1000),log(2000)),
      labels=c("50","100","200","500","1000","2000"),lwd=3,
      las=1,font=2)
 title(xlab="Target-site resistance genotype",
-      ylab="LC50 with PBO",
-      cex.lab=1.5,font=2)
+      ylab="LC50 with PBO (mg/L)",
+      cex.lab=1.4,font=2)
 box(bty="o",lwd=3)
 stripchart(log(sumDat$LC50.PBO)~sumDat$nAChR.81,vertical=TRUE,
            method="jitter",pch=21,add=TRUE,col="grey50",
