@@ -57,7 +57,7 @@ pdf(file="output/Figure_X_TSRcomp.pdf",width=6,height=5.5)
 op<-par(mar=c(5.1,5.1,1.1,1.1))
 vioplot(log(sumDat$LC50.PBO)~sumDat$nAChR.81,log="",
         col=c("green3","orange3","red3"),las=1,ann=FALSE,
-        bty="l",axes=FALSE,yaxt="n",xaxt="n",lwd=3,
+        bty="l",axes=FALSE,yaxt="n",xaxt="n",lwd=3,wex=0.8,
         border=c("green4","orange4","red4"))
 axis(1,at=c(1,2,3),labels=c("[RR]","[RT]","[TT]"),lwd=3,font=2)
 axis(2,at=c(log(50),log(100),log(200),log(500),log(1000),log(2000)),
@@ -65,7 +65,7 @@ axis(2,at=c(log(50),log(100),log(200),log(500),log(1000),log(2000)),
      las=1,font=2)
 title(xlab="Target-site resistance genotype",
       ylab="LC50 with PBO (mg/L)",
-      cex.lab=1.4,font=2)
+      cex.lab=1.4,font=2,line=3.5)
 box(bty="o",lwd=3)
 stripchart(log(sumDat$LC50.PBO)~sumDat$nAChR.81,vertical=TRUE,
            method="jitter",pch=21,add=TRUE,col="grey50",
