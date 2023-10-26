@@ -6,6 +6,10 @@
 
 #loading the packages necessary for the analysis
 source("MyMetab_load.R")
+#preparing the dataset
+dotdat<-sumDat
+dotdat$nAChR.81<-factor(dotdat$nAChR.81,levels=c("TT","RT","RR"))
+levels(dotdat$nAChR.81)<-c("[TT]","[RT]","[RR]")
 
 
 ##############################################################################/
@@ -34,9 +38,9 @@ axis(2,at=c(50,100,200,500,1000,2000),
 legend(50,2500,pch=21,pt.cex=2,pt.bg=colovec,
        legend=c("[TT]","[RT]","[RR]"),y.intersp=1.2,
        bty="n")
-title(xlab="Thiacloprid LC50 without PBO",
-      ylab="Thiacloprid LC50 with PBO",
-      cex.lab=1.5,font=2)
+title(xlab="Thiacloprid LC50 without PBO (mg/L)",
+      ylab="Thiacloprid LC50 with PBO (mg/L)",
+      cex.lab=1.4,font=2,line=3.5)
 box(bty="o",lwd=3)
 par(op)
 dev.off()
@@ -52,9 +56,6 @@ dev.off()
 pdf(file="output/Figure_X_LC50withwith.pdf",width=9,height=7)
 op<-par(mar=c(5.1,4.1,1.1,1.1))
 colovec=c("red3","orange3","green3")
-dotdat<-sumDat
-dotdat$nAChR.81<-factor(dotdat$nAChR.81,levels=c("TT","RT","RR"))
-levels(dotdat$nAChR.81)<-c("[TT]","[RT]","[RR]")
 #ordering the data by increasing LC50
 dotdat<-dotdat[order(dotdat$nAChR.81,-dotdat$LC50,decreasing=TRUE),]
 #ordPlot<-sort.list(as.numeric(dotdat$nAChR.81),decreasing=TRUE)
