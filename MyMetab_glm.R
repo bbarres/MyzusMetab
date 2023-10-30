@@ -10,12 +10,10 @@ source("MyMetab_load.R")
 
 
 ##############################################################################/
-#Regression analyses####
+#Correlation between variables analyses####
 ##############################################################################/
 
 str(sumDat)
-
-
 
 #a function to compute the absolute correlation between pairs of variables
 panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
@@ -38,6 +36,11 @@ pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1)
 #and level of expression of the different genes are correlated, we 
 #pick only one of these variables. Since CY23 is a less good candidate
 #we don't include the related variables either
+
+
+##############################################################################/
+#Actual modeling####
+##############################################################################/
 
 mod1<-glm(LC50~genetic.group+nAChR.81*CY3_CN,data=sumDat,
           family=stats::gaussian(link="log"))
