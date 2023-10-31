@@ -31,7 +31,6 @@ dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224_4.txt",
 dataMyMeta<-dataMyMeta[dataMyMeta$test_echec!=1,]
 
 
-
 # Pour l’analyse, nous avions décidé des critères suivants :
 #   
 #   -          “For each concentration that was tested, three replicates or more, 
@@ -52,7 +51,6 @@ dataMyMeta<-dataMyMeta[dataMyMeta$test_echec!=1,]
 #load data for the regression model
 sumDat<-read.table(file="data/summaData.txt",header=TRUE,sep="\t",
                    stringsAsFactors=TRUE)
-
 
 
 ##############################################################################/
