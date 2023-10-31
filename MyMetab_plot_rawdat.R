@@ -38,8 +38,8 @@ axis(2,at=c(50,100,200,500,1000,2000),
 legend(50,2500,pch=21,pt.cex=2,pt.bg=colovec,
        legend=c("[TT]","[RT]","[RR]"),y.intersp=1.2,
        bty="n")
-title(xlab="Thiacloprid LC50 without PBO (mg/L)",
-      ylab="Thiacloprid LC50 with PBO (mg/L)",
+title(xlab=expression(paste("Thiacloprid LC50 without PBO (",mu,"g/L)")),
+      ylab=expression(paste("Thiacloprid LC50 with PBO (",mu,"g/L)")),
       cex.lab=1.4,font=2,line=3.5)
 box(bty="o",lwd=3)
 par(op)
@@ -83,7 +83,7 @@ legend(2500,10,legend=c("without PBO","with PBO"),bg="white",
        title="Bioassays:",title.font=2,title.cex=1.2,pt.cex=2,
        y.intersp=1.2)
 
-title(xlab="Thiacloprid LC50 (mg/L)",
+title(xlab=expression(paste("Thiacloprid LC50 (",mu,"g/L)")),
       ylab="",
       cex.lab=1.5,font=2)
 
