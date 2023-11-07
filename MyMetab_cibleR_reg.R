@@ -9,6 +9,32 @@ source("MyMetab_load.R")
 
 
 ##############################################################################/
+#Testing the different in LC50 between R81T genotype groups####
+##############################################################################/
+
+#one way anova
+simp.mod<-lm(LC50~nAChR.81,data=sumDat)
+summary(simp.mod)
+#post hoc tests
+TukeyHSD(aov(simp.mod))
+plot(simp.mod,1) #seems there is different variance between group
+#testing heteroscedasticity
+leveneTest(LC50~nAChR.81,data=sumDat) #there is heteroscedasticity
+
+#log transformation to correct for heteroscedasticity
+leveneTest(log(LC50)~nAChR.81,data=sumDat) #ok now
+log.mod<-lm(log(LC50)~nAChR.81,data=sumDat)
+anova(log.mod) #the group has an effect on the LC50.PBO
+summary(log.mod)
+#post hoc tests
+TukeyHSD(aov(log.mod))
+plot(log.mod,1)
+#Means and SE obtained by back-transformation via the delta method
+BackTrans<-emmeans(log.mod,~nAChR.81,type="response")
+BackTrans
+
+
+##############################################################################/
 #Testing the different in LC50 with PBO####
 ##############################################################################/
 
