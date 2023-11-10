@@ -39,6 +39,7 @@ summary(ExpoDec.m1)
 #Asymptotic regression model with 2 parameters
 AssyReg.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
                 data=sumDatRR,fct=AR.2())
+plot(AssyReg.m1)
 summary(AssyReg.m1)
 
 
