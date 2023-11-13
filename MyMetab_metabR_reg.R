@@ -14,33 +14,40 @@ sumDatRR<-sumDatRR[order(sumDatRR$CY3_EXP),]
 
 
 ##############################################################################/
-#Fitting a different models with a maximum threshold value####
+#Fitting different models with a maximum threshold value####
 ##############################################################################/
 
-#Weibull model
-Weib.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
-             data=sumDatRR,fct=W1.2())
-plot(Weib.m1,type="confidence",log="",col="blue",lwd=3,lty=2)
-plot(Weib.m1,type="obs",add=TRUE)
-summary(Weib.m1)
+#Michaelis-Menten model with 3 parameters
+Micha.m3<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
+             data=sumDatRR,fct=MM.3())
+plot(Micha.m3,type="confidence",log="",col="blue",lwd=3,lty=2)
+plot(Micha.m3,type="obs",add=TRUE)
+summary(Micha.m3)
 
-#Michaelis-Menten model
-Micha.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
-             data=sumDatRR,fct=MM.2())
-plot(Micha.m1)
-summary(Micha.m1)
+#Michaelis-Menten model with 2 parameters
+Micha.m2<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
+              data=sumDatRR,fct=MM.2())
+plot(Micha.m2,type="confidence",log="",col="blue",lwd=3,lty=2)
+plot(Micha.m2,type="obs",add=TRUE)
+summary(Micha.m2)
 
-#exponential model
-ExpoDec.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
-                data=sumDatRR,fct=EXD.3())
-plot(ExpoDec.m1)
-summary(ExpoDec.m1)
+anova(Micha.m2,Micha.m3) #the model with fewer parameters is preferable
+
+#Asymptotic regression model with 3 parameters
+AssyReg.m3<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
+                data=sumDatRR,fct=AR.3())
+plot(AssyReg.m3,type="confidence",log="",col="blue",lwd=3,lty=2)
+plot(AssyReg.m3,type="obs",add=TRUE)
+summary(AssyReg.m3)
 
 #Asymptotic regression model with 2 parameters
-AssyReg.m1<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
+AssyReg.m2<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
                 data=sumDatRR,fct=AR.2())
-plot(AssyReg.m1)
-summary(AssyReg.m1)
+plot(AssyReg.m2,type="confidence",log="",col="blue",lwd=3,lty=2)
+plot(AssyReg.m2,type="obs",add=TRUE)
+summary(AssyReg.m2)
+
+anova(AssyReg.m2,AssyReg.m3) #the model with fewer parameters is preferable
 
 
 ##############################################################################/
