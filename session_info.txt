@@ -1,4 +1,4 @@
-─ Session info ──────────────────────────────────────────────────────────────────
+─ Session info ──────────────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 (2023-06-16 ucrt)
  os       Windows 10 x64 (build 19045)
@@ -8,11 +8,11 @@
  collate  French_France.utf8
  ctype    French_France.utf8
  tz       Europe/Paris
- date     2023-11-13
+ date     2023-11-16
  rstudio  2023.06.0+421 Mountain Hydrangea (desktop)
  pandoc   NA
 
-─ Packages ──────────────────────────────────────────────────────────────────────
+─ Packages ──────────────────────────────────────────────────────────────────────────
  package      * version    date (UTC) lib source
  abind          1.4-5      2016-07-21 [1] CRAN (R 4.2.0)
  car          * 3.1-2      2023-03-30 [1] CRAN (R 4.2.3)
@@ -37,7 +37,7 @@
  magrittr       2.0.3      2022-03-30 [1] CRAN (R 4.2.0)
  MASS         * 7.3-60     2023-05-04 [2] CRAN (R 4.3.1)
  mathjaxr       1.6-0      2022-02-28 [1] CRAN (R 4.2.1)
- Matrix       * 1.6-2      2023-11-08 [1] CRAN (R 4.3.2)
+ Matrix       * 1.6-3      2023-11-14 [1] CRAN (R 4.3.1)
  medrc        * 1.1-0      2022-09-15 [1] Github (DoseResponse/medrc@bc36df5)
  metadat      * 1.2-0      2022-04-06 [1] CRAN (R 4.2.1)
  metafor      * 4.4-0      2023-09-27 [1] CRAN (R 4.3.1)
@@ -76,4 +76,4 @@
  [1] C:/Users/benoi/AppData/Local/R/win-library/4.3
  [2] C:/Program Files/R/R-4.3.1/library
 
-─────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────

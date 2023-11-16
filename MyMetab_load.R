@@ -51,6 +51,9 @@ dataMyMeta<-dataMyMeta[dataMyMeta$test_echec!=1,]
 #load data for the regression model
 sumDat<-read.table(file="data/summaData.txt",header=TRUE,sep="\t",
                    stringsAsFactors=TRUE)
+sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("TT","RT","RR"))
+levels(sumDat$nAChR.81)<-c("[TT]","[RT]","[RR]")
+#adding columns for comparisons with and
 
 
 ##############################################################################/

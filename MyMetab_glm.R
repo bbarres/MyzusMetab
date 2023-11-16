@@ -60,6 +60,7 @@ summary(mod3) #AIC 351
 mod4<-glm(LC50~nAChR.81+CY4_EXP,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(mod4) #AIC 389
+anova(mod3,mod1,test="Chisq")
 
 #modelling the EC50 with PBO
 modPBO.1<-glm(LC50.PBO~nAChR.81*CY3_EXP,data=sumDat,
@@ -74,6 +75,7 @@ summary(modPBO.3) #AIC 292
 modPBO.4<-glm(LC50.PBO~nAChR.81+CY4_EXP,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(modPBO.4) #AIC 322
+anova(modPBO.3,modPBO.1,test="Chisq")
 
 #modelling the difference/ratio with or without PBO
 modDif1<-glm(LC50/LC50.PBO~nAChR.81*CY3_EXP,data=sumDat,
@@ -88,6 +90,7 @@ summary(modDif3) #AIC 80
 modDif4<-glm(LC50/LC50.PBO~nAChR.81+CY4_EXP,data=sumDat,
              family=stats::gaussian(link="identity"))
 summary(modDif4) #AIC 81
+anova(modDif3,modDif1,test="Chisq")
 
 #to sum up the best model
 summary(mod1)

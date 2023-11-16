@@ -6,10 +6,6 @@
 
 #loading the packages necessary for the analysis
 source("MyMetab_load.R")
-#preparing the dataset
-dotdat<-sumDat
-dotdat$nAChR.81<-factor(dotdat$nAChR.81,levels=c("TT","RT","RR"))
-levels(dotdat$nAChR.81)<-c("[TT]","[RT]","[RR]")
 
 
 ##############################################################################/
@@ -57,22 +53,22 @@ pdf(file="output/Figure_X_LC50withwith.pdf",width=9,height=7)
 op<-par(mar=c(5.1,4.1,1.1,1.1))
 colovec=c("red3","orange3","green3")
 #ordering the data by increasing LC50
-dotdat<-dotdat[order(dotdat$nAChR.81,-dotdat$LC50,decreasing=TRUE),]
-#ordPlot<-sort.list(as.numeric(dotdat$nAChR.81),decreasing=TRUE)
-ycorec<-cumsum(c(0,diff(as.numeric(dotdat$nAChR.81)) != 0))
-ycoor<-1:dim(dotdat)[1] + 2*ycorec
+sumDat<-sumDat[order(sumDat$nAChR.81,-sumDat$LC50,decreasing=TRUE),]
+#ordPlot<-sort.list(as.numeric(sumDat$nAChR.81),decreasing=TRUE)
+ycorec<-cumsum(c(0,diff(as.numeric(sumDat$nAChR.81)) != 0))
+ycoor<-1:dim(sumDat)[1] + 2*ycorec
 
-dotchart(dotdat$LC50,
-         groups=dotdat$nAChR.81,
-         labels=dotdat$clone.ID,
-         xlim=range(dotdat$LC50.PBO,dotdat$LC50)+c(-10,1000),
-         col=colovec[as.numeric(dotdat$nAChR.81)],
+dotchart(sumDat$LC50,
+         groups=sumDat$nAChR.81,
+         labels=sumDat$clone.ID,
+         xlim=range(sumDat$LC50.PBO,sumDat$LC50)+c(-10,1000),
+         col=colovec[as.numeric(sumDat$nAChR.81)],
          log="x",pch="")
 
-for(i in 1:dim(dotdat)[1]) {
-  segments(min(dotdat$LC50.PBO[i],dotdat$LC50[i]),ycoor[i],
-           max(dotdat$LC50.PBO[i],dotdat$LC50[i]),ycoor[i],
-           lwd=5,col=colovec[as.numeric(dotdat$nAChR.81)][i]) 
+for(i in 1:dim(sumDat)[1]) {
+  segments(min(sumDat$LC50.PBO[i],sumDat$LC50[i]),ycoor[i],
+           max(sumDat$LC50.PBO[i],sumDat$LC50[i]),ycoor[i],
+           lwd=5,col=colovec[as.numeric(sumDat$nAChR.81)][i]) 
 }
 
 points(dotdat$LC50,ycoor,pch=19,cex=2)
