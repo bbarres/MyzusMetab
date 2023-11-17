@@ -7,10 +7,7 @@
 #loading the packages necessary for the analysis
 source("MyMetab_load.R")
 #limiting the dataset to the R81T-[RR] genotypes
-sumDatRR<-sumDat[sumDat$nAChR.81=="RR",]
-#adding a column for the proportion of LD50 linked to metabolic resistance
-sumDatRR$propMeta<-(1-(sumDatRR$LC50.PBO/sumDatRR$LC50))
-sumDatRR<-sumDatRR[order(sumDatRR$CY3_EXP),]
+sumDatRR<-sumDat[sumDat$nAChR.81=="[RR]",]
 
 
 ##############################################################################/
@@ -54,14 +51,17 @@ anova(AssyReg.m2,AssyReg.m3) #the model with fewer parameters is preferable
 #Plotting the asymptotic regression model####
 ##############################################################################/
 
+modplot<-Micha.m2
+modplot<-AssyReg.m2
+
 pdf(file="output/Figure_X_metaRR.pdf",width=7,height=6)
 op<-par(mar=c(5.1,5.1,1.1,1.1))
-plot(AssyReg.m1,type="confidence",log="",col="skyblue3",
+plot(modplot,type="confidence",log="",col="skyblue3",
      lwd=4,lty=2,ann=FALSE,axes=FALSE,bty="n",
      xlab="",
      ylab="",
      ylim=c(0,1))
-plot(AssyReg.m1,type="obs",pch=19,col="green3",cex=1.5,add=TRUE)
+plot(modplot,type="obs",pch=19,col="green3",cex=1.5,add=TRUE)
 axis(1,lwd=3,font=2)
 axis(2,lwd=3,las=1,font=2)
 box(bty="o",lwd=3)

@@ -30,30 +30,25 @@ dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224_4.txt",
 #problem during the lab experiment
 dataMyMeta<-dataMyMeta[dataMyMeta$test_echec!=1,]
 
-
-# Pour l’analyse, nous avions décidé des critères suivants :
-#   
+# For the cleaning of the data, we used these criteria :
+# 
 # -“For each concentration that was tested, three replicates or more,
 # involving at least 10 L1 per replicate, were tested. Tests were repeated 
 # until a minimum of 45 aphids per dose were assayed for each modality.”
 # 
-# -Mortalité dans le témoin < 20%
+# -untreated control mortality  < 20%
 # 
-# -Pour qu’un test sur un clone donné soit valide, le test sur la 
-# référence 11-0037-0001 correspondant doit être valable.
-# 
-# -En plus de ces critères stricts, lors des premières analyses R, 
-# nous supprimions parfois les données des doses extrêmes lorsque le plateau 
-# était trop grand, pour que le modèle gère mieux ces résultats. Nous faisions 
-# ça manuellement.
-
+# -to validate a test on a clone, the reference clone 11-0037-0001 tested 
+# at the same date should also be valid
 
 #load data for the regression model
 sumDat<-read.table(file="data/summaData.txt",header=TRUE,sep="\t",
                    stringsAsFactors=TRUE)
 sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("TT","RT","RR"))
 levels(sumDat$nAChR.81)<-c("[TT]","[RT]","[RR]")
-#adding columns for comparisons with and
+#adding columns for comparisons with and without PBO
+sumDat$propMeta<-(1-(sumDat$LC50.PBO/sumDat$LC50))
+sumDat$diffMeta<-(sumDat$LC50-sumDat$LC50.PBO)
 
 
 ##############################################################################/
