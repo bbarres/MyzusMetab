@@ -12,7 +12,7 @@ source("MyMetab_load.R")
 levels(sumDat$nAChR.81)<-c("[RR]","[RT]","[TT]")
 
 ##############################################################################/
-#Correlation between variables analyses####
+#Correlation between P450 quantitative variables####
 ##############################################################################/
 
 str(sumDat)
@@ -32,7 +32,13 @@ panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
 #because we suspect collinearity between genes copy number, we 
 #first look at correlation between the different potential variable
 pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1)
-#export to .pdf 9 x 7 inches
+
+#producing the supplementary figure
+pdf(file="output/Figure_SX_pairs.pdf",width=9,height=7)
+colovec=c("red3","orange3","green3")
+pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1,
+      col=colovec[as.numeric(sumDat$nAChR.81)],pch=19)
+dev.off()
 
 #because the correlation between copy number of the different genes
 #and level of expression of the different genes are correlated, we 
@@ -44,7 +50,9 @@ pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1)
 #Actual modeling####
 ##############################################################################/
 
-#the complete model with the different P450 explicative variable
+#the complete model including the R81T genotype, one P450 quantification 
+#variable, the genetic group and their interactions. The different P450 
+#quantification variables are tested to select the best one
 modT<-glm(LC50~nAChR.81*CY3_EXP*genetic.group,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(modT)$aic #AIC 324.388
@@ -59,6 +67,8 @@ modT<-glm(LC50~nAChR.81*CY4_CN*genetic.group,data=sumDat,
 summary(modT)$aic #AIC 417.6384
 #the model with the smallest AIC is the one using CY3_EXP variable
 #therefore we select this variable for further analyses
+
+
 modT<-glm(LC50~genetic.group*nAChR.81*CY3_EXP,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(modT)
@@ -89,21 +99,28 @@ anova(mod2,mod1,test="Chisq") #the model with the interaction is better
 #the CY3 expression level and their interaction
 summary(mod1)
 anova(mod1,test="Chisq")
-plot(mod1)
+plot(mod1,1)
+
+
+##############################################################################/
+#END
+##############################################################################/
 
 
 #modelling the EC50 with PBO
 modPBO.1<-glm(LC50.PBO~nAChR.81*CY3_EXP,data=sumDat,
-          family=stats::gaussian(link="log"))
+              family=stats::gaussian(link="log"))
 summary(modPBO.1) #best model AIC 282
+anova(modPBO.1,test="Chisq")
+plot(modPBO.1)
 modPBO.2<-glm(LC50.PBO~nAChR.81*CY4_EXP,data=sumDat,
-          family=stats::gaussian(link="log"))
+              family=stats::gaussian(link="log"))
 summary(modPBO.2) #AIC 324
 modPBO.3<-glm(LC50.PBO~nAChR.81+CY3_EXP,data=sumDat,
-          family=stats::gaussian(link="log"))
+              family=stats::gaussian(link="log"))
 summary(modPBO.3) #AIC 292
 modPBO.4<-glm(LC50.PBO~nAChR.81+CY4_EXP,data=sumDat,
-          family=stats::gaussian(link="log"))
+              family=stats::gaussian(link="log"))
 summary(modPBO.4) #AIC 322
 anova(modPBO.3,modPBO.1,test="Chisq")
 
@@ -127,8 +144,3 @@ anova(modDif3,modDif1,test="Chisq")
 summary(mod1)
 summary(modPBO.1)
 summary(modDif1)
-
-
-##############################################################################/
-#END
-##############################################################################/
