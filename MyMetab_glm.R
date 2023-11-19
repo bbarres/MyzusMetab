@@ -7,7 +7,9 @@
 
 #loading the packages necessary for the analysis
 source("MyMetab_load.R")
-
+#we reorder the level of the nAChR.81 factor so that the sensitive genotype
+#is the reference
+levels(sumDat$nAChR.81)<-c("[RR]","[RT]","[TT]")
 
 ##############################################################################/
 #Correlation between variables analyses####
@@ -42,25 +44,53 @@ pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1)
 #Actual modeling####
 ##############################################################################/
 
-mod1<-glm(LC50~genetic.group+nAChR.81*CY3_CN,data=sumDat,
+#the complete model with the different P450 explicative variable
+modT<-glm(LC50~nAChR.81*CY3_EXP*genetic.group,data=sumDat,
           family=stats::gaussian(link="log"))
-summary(mod1)
-#the genetic.group is not important, so we remove this 
+summary(modT)$aic #AIC 324.388
+modT<-glm(LC50~nAChR.81*CY3_CN*genetic.group,data=sumDat,
+          family=stats::gaussian(link="log"))
+summary(modT)$aic #AIC 427.2367
+modT<-glm(LC50~nAChR.81*CY4_EXP*genetic.group,data=sumDat,
+          family=stats::gaussian(link="log"))
+summary(modT)$aic #AIC 394.7389
+modT<-glm(LC50~nAChR.81*CY4_CN*genetic.group,data=sumDat,
+          family=stats::gaussian(link="log"))
+summary(modT)$aic #AIC 417.6384
+#the model with the smallest AIC is the one using CY3_EXP variable
+#therefore we select this variable for further analyses
+modT<-glm(LC50~genetic.group*nAChR.81*CY3_EXP,data=sumDat,
+          family=stats::gaussian(link="log"))
+summary(modT)
+#the 3 factor interaction is irrelevant here, so we remove it
+modT<-glm(LC50~nAChR.81+CY3_EXP+genetic.group+
+            genetic.group:nAChR.81+genetic.group:CY3_EXP+nAChR.81:CY3_EXP,
+          data=sumDat,family=stats::gaussian(link="log"))
+summary(modT)
+anova(modT,test="Chisq")
+#the interaction between genetic.group and other factors are not significant
+#so we remove them too
+modT<-glm(LC50~nAChR.81+CY3_EXP+nAChR.81:CY3_EXP+genetic.group,
+          data=sumDat,family=stats::gaussian(link="log"))
+anova(modT,test="Chisq")
+summary(modT)
+#the genetic.group doesn't seem to have an impact on LC50, so we remove this 
 #variable from the model
-
 mod1<-glm(LC50~nAChR.81*CY3_EXP,data=sumDat,
           family=stats::gaussian(link="log"))
-summary(mod1) #best model AIC 320
-mod2<-glm(LC50~nAChR.81*CY4_EXP,data=sumDat,
+summary(mod1)$aic #the AIC is improved
+#let's try to remove the interaction to simplify further the model
+mod2<-glm(LC50~nAChR.81+CY3_EXP,data=sumDat,
           family=stats::gaussian(link="log"))
-summary(mod2) #AIC 390
-mod3<-glm(LC50~nAChR.81+CY3_EXP,data=sumDat,
-          family=stats::gaussian(link="log"))
-summary(mod3) #AIC 351
-mod4<-glm(LC50~nAChR.81+CY4_EXP,data=sumDat,
-          family=stats::gaussian(link="log"))
-summary(mod4) #AIC 389
-anova(mod3,mod1,test="Chisq")
+summary(mod2)$aic #the AIC is greater than the one obtained with mod1
+anova(mod2,mod1,test="Chisq") #the model with the interaction is better
+
+#here are the results for the final model with the nAChR.81 genotype, 
+#the CY3 expression level and their interaction
+summary(mod1)
+anova(mod1,test="Chisq")
+plot(mod1)
+
 
 #modelling the EC50 with PBO
 modPBO.1<-glm(LC50.PBO~nAChR.81*CY3_EXP,data=sumDat,
@@ -81,6 +111,7 @@ anova(modPBO.3,modPBO.1,test="Chisq")
 modDif1<-glm(LC50/LC50.PBO~nAChR.81*CY3_EXP,data=sumDat,
              family=stats::gaussian(link="identity"))
 summary(modDif1) #best model AIC 76
+anova(modDif1,test="Chisq")
 modDif2<-glm(LC50/LC50.PBO~nAChR.81*CY4_EXP,data=sumDat,
              family=stats::gaussian(link="identity"))
 summary(modDif2) #AIC 77
