@@ -19,10 +19,11 @@ summary(simp.mod)
 TukeyHSD(aov(simp.mod))
 plot(simp.mod,1) #seems there is different variance between group
 #testing heteroscedasticity
-leveneTest(LC50~nAChR.81,data=sumDat) #there is heteroscedasticity
+leveneTest(LC50~nAChR.81,data=sumDat,
+           center="mean") #there is heteroscedasticity
 
 #log transformation to correct for heteroscedasticity
-leveneTest(log(LC50)~nAChR.81,data=sumDat) #ok now
+leveneTest(log(LC50)~nAChR.81,data=sumDat,center="mean") #ok now
 log.mod<-lm(log(LC50)~nAChR.81,data=sumDat)
 anova(log.mod) #the group has an effect on the LC50.PBO
 summary(log.mod)
@@ -45,10 +46,11 @@ summary(simp.mod)
 TukeyHSD(aov(simp.mod))
 plot(simp.mod,1) #seems there is different variance between group
 #testing heteroscedasticity
-leveneTest(LC50.PBO~nAChR.81,data=sumDat) #there is heteroscedasticity
+leveneTest(LC50.PBO~nAChR.81,data=sumDat,
+           center="mean") #there is heteroscedasticity
 
 #log transformation to correct for heteroscedasticity
-leveneTest(log(LC50.PBO)~nAChR.81,data=sumDat) #ok now
+leveneTest(log(LC50.PBO)~nAChR.81,data=sumDat,center="mean") #ok now
 log.mod<-lm(log(LC50.PBO)~nAChR.81,data=sumDat)
 anova(log.mod) #the group has an effect on the LC50.PBO
 summary(log.mod)
