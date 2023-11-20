@@ -14,24 +14,35 @@ source("MyMetab_load.R")
 
 #investigating the correlation between thiacloprid LC50 with or without PBO
 withwith.mod<-lm(sumDat$LC50.PBO~sumDat$LC50)
+#the residuals are not normaly distributed
+plot(withwith.mod,1)
+plot(withwith.mod,2)
+#we log transform both the LC50 values
+withwith.mod<-lm(log(sumDat$LC50.PBO)~log(sumDat$LC50))
+#the residuals look bette
+plot(withwith.mod,1)
+plot(withwith.mod,2)
 summary(withwith.mod)
+anova(withwith.mod)
 
 #producing the plot
 pdf(file="output/Figure_X_CorrWithWitho.pdf",width=6,height=5.5)
 op<-par(mar=c(5.1,5.1,1.1,1.1))
 colovec=c("red3","orange3","green3")
-plot(sumDat$LC50.PBO~sumDat$LC50,log="xy",pch=21,
-     bg=colovec[as.numeric(dotdat$nAChR.81)],las=1,
+plot(log(sumDat$LC50.PBO)~log(sumDat$LC50),log="",pch=21,
+     bg=colovec[as.numeric(sumDat$nAChR.81)],las=1,
      ann=FALSE,axes=FALSE,cex=2)
-abline(lm(sumDat$LC50.PBO~sumDat$LC50),
+abline(lm(log(sumDat$LC50.PBO)~log(sumDat$LC50)),
        col="black",lwd=4,lty=2,untf=TRUE)
-points(sumDat$LC50.PBO~sumDat$LC50,pch=21,cex=2,
-       bg=colovec[as.numeric(dotdat$nAChR.81)])
-axis(1,at=c(50,100,200,500,1000,2500,7500,20000),lwd=3,font=2)
-axis(2,at=c(50,100,200,500,1000,2000),
+points(log(sumDat$LC50.PBO)~log(sumDat$LC50),pch=21,cex=2,
+       bg=colovec[as.numeric(sumDat$nAChR.81)])
+axis(1,at=log(c(50,100,200,500,1000,2500,7500,20000)),lwd=3,
+     labels=c("50","100","200","500","1000","2500","7500","20000"),
+     font=2)
+axis(2,at=log(c(50,100,200,500,1000,2000)),
      labels=c("50","100","200","500","1000","2000"),lwd=3,
      las=1,font=2)
-legend(50,2500,pch=21,pt.cex=2,pt.bg=colovec,
+legend(log(50),log(2500),pch=21,pt.cex=2,pt.bg=colovec,
        legend=c("[TT]","[RT]","[RR]"),y.intersp=1.2,
        bty="n")
 title(xlab=expression(paste("Thiacloprid LC50 without PBO (",mu,"g/L)")),
