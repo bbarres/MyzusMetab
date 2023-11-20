@@ -9,21 +9,48 @@ source("MyMetab_load.R")
 
 
 ##############################################################################/
-#Figure XX: Correlation between LD50 with or without PBO####
+#Correlation between LD50 with or without PBO####
 ##############################################################################/
+
+#comparing the variance between LC50 and LC50.PBO
+mean(sumDat$LC50)
+tapply(sumDat$LC50,sumDat$nAChR.81,mean)
+var(sumDat$LC50)
+tapply(sumDat$LC50,sumDat$nAChR.81,var)
+mean(sumDat$LC50.PBO)
+tapply(sumDat$LC50.PBO,sumDat$nAChR.81,mean)
+var(sumDat$LC50.PBO)
+tapply(sumDat$LC50.PBO,sumDat$nAChR.81,var)
+#it seems there is an important reduction in variance
+var(sumDat$LC50)/var(sumDat$LC50.PBO) #almost 30 times greater for LC50 than
+                                      # for LC50.PBO
+#testing the difference between variance using a Levene test
+long_sumDat<-pivot_longer(sumDat[,1:5],cols=4:5,
+                   names_to="treatment",values_to="LC50value")
+leveneTest(LC50value~treatment,data=long_sumDat,center="mean")
 
 #investigating the correlation between thiacloprid LC50 with or without PBO
 withwith.mod<-lm(sumDat$LC50.PBO~sumDat$LC50)
-#the residuals are not normaly distributed
+#the residuals are not normally distributed
 plot(withwith.mod,1)
 plot(withwith.mod,2)
-#we log transform both the LC50 values
+#not surprising since we have seen the variance significantly differs
+leveneTest(LC50value~treatment,data=long_sumDat,center="mean")
+#we log transform both the LC50 values to fix the variance issue
+leveneTest(log(LC50value)~treatment,data=long_sumDat,center="mean")
 withwith.mod<-lm(log(sumDat$LC50.PBO)~log(sumDat$LC50))
-#the residuals look bette
+#the residuals look better
 plot(withwith.mod,1)
 plot(withwith.mod,2)
+
+#the results of the correlation between LC50 and LC50.PBO values
 summary(withwith.mod)
 anova(withwith.mod)
+
+
+##############################################################################/
+#Figure XX: Correlation between LC50 with or without PBO####
+##############################################################################/
 
 #producing the plot
 pdf(file="output/Figure_X_CorrWithWitho.pdf",width=6,height=5.5)
@@ -60,7 +87,7 @@ dev.off()
 #this code was adapted from: 
 #https://r-coder.com/dot-plot-r/?utm_content=cmp-true
 
-pdf(file="output/Figure_X_LC50withwith.pdf",width=9,height=7)
+pdf(file="output/Figure_X_LC50dumbell.pdf",width=9,height=7)
 op<-par(mar=c(5.1,4.1,1.1,1.1))
 colovec=c("red3","orange3","green3")
 #ordering the data by increasing LC50
@@ -82,8 +109,8 @@ for(i in 1:dim(sumDat)[1]) {
            lwd=5,col=colovec[as.numeric(sumDat$nAChR.81)][i]) 
 }
 
-points(dotdat$LC50,ycoor,pch=19,cex=2)
-points(dotdat$LC50.PBO,ycoor,pch=21,cex=2,bg="white")
+points(sumDat$LC50,ycoor,pch=19,cex=2)
+points(sumDat$LC50.PBO,ycoor,pch=21,cex=2,bg="white")
 
 legend(2500,10,legend=c("without PBO","with PBO"),bg="white",
        pch=c(19,21),col=c("black","black"),pt.bg=c("black","white"),

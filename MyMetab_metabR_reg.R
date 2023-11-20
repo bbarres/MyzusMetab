@@ -16,7 +16,7 @@ sumDatRR<-sumDat[sumDat$nAChR.81=="[RR]",]
 
 #Michaelis-Menten model with 3 parameters
 Micha.m3<-drm(sumDatRR$propMeta~sumDatRR$CY3_EXP,
-             data=sumDatRR,fct=MM.3())
+              data=sumDatRR,fct=MM.3())
 plot(Micha.m3,type="confidence",log="",col="blue",lwd=3,lty=2)
 plot(Micha.m3,type="obs",add=TRUE)
 summary(Micha.m3)
