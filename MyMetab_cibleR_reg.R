@@ -6,6 +6,9 @@
 
 #loading the packages necessary for the analysis
 source("MyMetab_load.R")
+#we reorder the level of the nAChR.81 factor so that the sensitive genotype
+#is the reference
+sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("[RR]","[RT]","[TT]"))
 
 
 ##############################################################################/
@@ -40,26 +43,26 @@ BackTrans
 ##############################################################################/
 
 #one way anova
-simp.mod<-lm(LC50.PBO~nAChR.81,data=sumDat)
-summary(simp.mod)
+simp.modPBO<-lm(LC50.PBO~nAChR.81,data=sumDat)
+summary(simp.modPBO)
 #post hoc tests
-TukeyHSD(aov(simp.mod))
-plot(simp.mod,1) #seems there is different variance between group
+TukeyHSD(aov(simp.modPBO))
+plot(simp.modPBO,1) #seems there is different variance between group
 #testing heteroscedasticity
 leveneTest(LC50.PBO~nAChR.81,data=sumDat,
            center="mean") #there is heteroscedasticity
 
 #log transformation to correct for heteroscedasticity
 leveneTest(log(LC50.PBO)~nAChR.81,data=sumDat,center="mean") #ok now
-log.mod<-lm(log(LC50.PBO)~nAChR.81,data=sumDat)
-anova(log.mod) #the group has an effect on the LC50.PBO
-summary(log.mod)
+log.modPBO<-lm(log(LC50.PBO)~nAChR.81,data=sumDat)
+anova(log.modPBO) #the group has an effect on the LC50.PBO
+summary(log.modPBO)
 #post hoc tests
-TukeyHSD(aov(log.mod))
-plot(log.mod,1)
+TukeyHSD(aov(log.modPBO))
+plot(log.modPBO,1)
 #Means and SE obtained by back-transformation via the delta method
-BackTrans<-emmeans(log.mod,~nAChR.81,type="response")
-BackTrans
+BackTransPBO<-emmeans(log.modPBO,~nAChR.81,type="response")
+BackTransPBO
 
 
 ##############################################################################/

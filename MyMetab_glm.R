@@ -9,7 +9,8 @@
 source("MyMetab_load.R")
 #we reorder the level of the nAChR.81 factor so that the sensitive genotype
 #is the reference
-levels(sumDat$nAChR.81)<-c("[RR]","[RT]","[TT]")
+sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("[RR]","[RT]","[TT]"))
+
 
 ##############################################################################/
 #Correlation between P450 quantitative variables####
