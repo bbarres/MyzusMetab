@@ -21,10 +21,13 @@ mean(sumDat$LC50.PBO)
 tapply(sumDat$LC50.PBO,sumDat$nAChR.81,mean)
 var(sumDat$LC50.PBO)
 tapply(sumDat$LC50.PBO,sumDat$nAChR.81,var)
+
 #it seems there is an important reduction in variance
 var(sumDat$LC50)/var(sumDat$LC50.PBO) #almost 30 times greater for LC50 than
                                       # for LC50.PBO
-#testing the difference between variance using a Levene test
+tapply(sumDat$LC50,sumDat$nAChR.81,var)/
+  tapply(sumDat$LC50.PBO,sumDat$nAChR.81,var)
+#testing the difference between variance using a Levene's test
 long_sumDat<-pivot_longer(sumDat[,1:5],cols=4:5,
                    names_to="treatment",values_to="LC50value")
 leveneTest(LC50value~treatment,data=long_sumDat,center="mean")
