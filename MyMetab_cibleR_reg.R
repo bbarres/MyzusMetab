@@ -33,6 +33,10 @@ summary(log.mod)
 #post hoc tests
 TukeyHSD(aov(log.mod))
 plot(log.mod,1)
+exp(TukeyHSD(aov(log.mod))$nAChR.81[,1])
+exp(TukeyHSD(aov(log.mod))$nAChR.81[,2])
+exp(TukeyHSD(aov(log.mod))$nAChR.81[,3])
+
 #Means and SE obtained by back-transformation via the delta method
 BackTrans<-emmeans(log.mod,~nAChR.81,type="response")
 BackTrans
