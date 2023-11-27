@@ -99,8 +99,12 @@ anova(mod2,mod1,test="Chisq") #the model with the interaction is better
 #here are the results for the final model with the nAChR.81 genotype, 
 #the CY3 expression level and their interaction
 summary(mod1)
-anova(mod1,test="Chisq")
+#anova(mod1,test="Chisq")
+Anova(mod1,type=c("III"))
 plot(mod1,1)
+exp(coef(mod1))
+exp(coef(mod1)+1.96*summary(mod1)$coefficients[,2])
+exp(coef(mod1)-1.96*summary(mod1)$coefficients[,2])
 
 #another more straightforward way to do backward elimination
 step(modT,direction="backward")
