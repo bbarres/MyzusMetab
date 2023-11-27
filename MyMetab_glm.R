@@ -102,6 +102,9 @@ summary(mod1)
 anova(mod1,test="Chisq")
 plot(mod1,1)
 
+#another more straightforward way to do backward elimination
+step(modT,direction="backward")
+
 
 ##############################################################################/
 #END
