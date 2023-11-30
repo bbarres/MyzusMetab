@@ -8,6 +8,7 @@
 library(car)
 library(drc)
 library(emmeans)
+library(jtools)
 library(medrc)
 library(plotrix)
 library(gdata)
