@@ -103,7 +103,10 @@ summary(mod1)
 #anova(mod1,test="Chisq")
 Anova(mod1,type=c("III"))
 plot(mod1,1)
-plot_summs(mod1,mod2,plot.distributions=TRUE)
+plot_summs(mod1,mod2,plot.distributions=TRUE,
+           model.names=c("with interactions","without interactions"))
+plot_summs(mod1,mod2,plot.distributions=FALSE,
+           model.names=c("with interactions","without interactions"))
 exp(coef(mod1))
 exp(coef(mod1)+1.96*summary(mod1)$coefficients[,2])
 exp(coef(mod1)-1.96*summary(mod1)$coefficients[,2])
