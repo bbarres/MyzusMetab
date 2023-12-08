@@ -36,7 +36,7 @@ pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1)
 
 #producing the supplementary figure
 pdf(file="output/Figure_SX_pairs.pdf",width=9,height=7)
-colovec=c("red3","orange3","green3")
+colovec=c("green3","orange3","red3")
 pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1,col=grey(0.0,1.0),
       bg=colovec[as.numeric(sumDat$nAChR.81)],pch=21,
       cex=1.5,cex.cor=3)
