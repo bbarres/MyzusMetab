@@ -37,7 +37,7 @@ dataMyMeta<-dataMyMeta[dataMyMeta$test_echec!=1,]
 # involving at least 10 L1 per replicate, were tested. Tests were repeated 
 # until a minimum of 45 aphids per dose were assayed for each modality.”
 # 
-# -untreated control mortality  < 20%
+# -untreated control mortality < 20%
 # 
 # -to validate a test on a clone, the reference clone 11-0037-0001 tested 
 # at the same date should also be valid

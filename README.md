@@ -22,7 +22,12 @@ There are XX datasets used in this study. The files can be found in the "data" f
   
 ## R scripts
 + **MyMetab_load.R:** the script to load the different datasets and packages in the environment
-
++ **MyMetab_cibleR_reg.R:** 
++ **MyMetab_drc.R:** 
++ **MyMetab_glm.R:**
++ **MyMetab_metabR_reg.R:** 
++ **MyMetab_plot_glm.R:** 
++ **MyMetab_plot_rawdat.R:** 
 
 ## Citation
 You will soon be able (hopefully) to cite the related study as follow: 
