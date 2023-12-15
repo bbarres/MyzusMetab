@@ -51,6 +51,15 @@ levels(sumDat$nAChR.81)<-c("[TT]","[RT]","[RR]")
 sumDat$propMeta<-(1-(sumDat$LC50.PBO/sumDat$LC50))
 sumDat$diffMeta<-(sumDat$LC50-sumDat$LC50.PBO)
 
+#a second data set for the regression model scaled on another clone
+sumRsk<-read.table(file="data/summaDataResc.txt",header=TRUE,sep="\t",
+                   stringsAsFactors=TRUE)
+sumRsk$nAChR.81<-factor(sumRsk$nAChR.81,levels=c("TT","RT","RR"))
+levels(sumRsk$nAChR.81)<-c("[TT]","[RT]","[RR]")
+#adding columns for comparisons with and without PBO
+sumRsk$propMeta<-(1-(sumRsk$LC50.PBO/sumRsk$LC50))
+sumRsk$diffMeta<-(sumRsk$LC50-sumRsk$LC50.PBO)
+
 
 ##############################################################################/
 #Writing info session for reproducibility####
