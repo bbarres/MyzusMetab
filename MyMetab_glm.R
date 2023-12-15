@@ -9,6 +9,7 @@
 source("MyMetab_load.R")
 #we reorder the level of the nAChR.81 factor so that the sensitive genotype
 #is the reference
+sumDat<-sumRsk
 sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("[RR]","[RT]","[TT]"))
 
 
