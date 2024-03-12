@@ -52,11 +52,11 @@ anova(withwith.mod)
 
 
 ##############################################################################/
-#Figure XX: Correlation between LC50 with or without PBO####
+#Figure 1A: Correlation between LC50 with or without PBO####
 ##############################################################################/
 
 #producing the plot
-pdf(file="output/Figure_X_CorrWithWitho.pdf",width=6,height=5.5)
+pdf(file="output/Figure_1A_CorrWithWitho.pdf",width=6,height=5.5)
 op<-par(mar=c(5.1,5.1,1.1,1.1))
 colovec=c("red3","orange3","green3")
 plot(log(sumDat$LC50.PBO)~log(sumDat$LC50),log="",pch=21,
@@ -73,7 +73,10 @@ axis(2,at=log(c(50,100,200,500,1000,2000)),
      labels=c("50","100","200","500","1000","2000"),lwd=3,
      las=1,font=2)
 legend(log(50),log(2500),pch=21,pt.cex=2,pt.bg=colovec,
-       legend=c("[TT]","[RT]","[RR]"),y.intersp=1.2,
+       legend=c(expression("81"^"TT"),
+                expression("81"^"RT"),
+                expression("81"^"RR")),
+       y.intersp=1.2,
        bty="n")
 title(xlab=expression(paste("Thiacloprid LC50 without PBO (",mu,"g/L)")),
       ylab=expression(paste("Thiacloprid LC50 with PBO (",mu,"g/L)")),
@@ -84,17 +87,18 @@ dev.off()
 
 
 ##############################################################################/
-#Figure XX: LC50 dumbellplot with or without PBO####
+#Figure 1B: LC50 dumbellplot with or without PBO####
 ##############################################################################/
 
 #this code was adapted from: 
 #https://r-coder.com/dot-plot-r/?utm_content=cmp-true
 
-pdf(file="output/Figure_X_LC50dumbell.pdf",width=9,height=7)
+pdf(file="output/Figure_1B_LC50dumbell.pdf",width=9,height=7)
 op<-par(mar=c(5.1,4.1,1.1,1.1))
 colovec=c("red3","orange3","green3")
 #ordering the data by increasing LC50
 sumDat<-sumDat[order(sumDat$nAChR.81,-sumDat$LC50,decreasing=TRUE),]
+
 #ordPlot<-sort.list(as.numeric(sumDat$nAChR.81),decreasing=TRUE)
 ycorec<-cumsum(c(0,diff(as.numeric(sumDat$nAChR.81)) != 0))
 ycoor<-1:dim(sumDat)[1] + 2*ycorec

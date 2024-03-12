@@ -91,7 +91,7 @@ pairwise.wilcox.test(sumDat$LC50.PBO,sumDat$nAChR.81,p.adjust.method="BH")
 
 
 ##############################################################################/
-#Figure XX: plot of the distribution of LC50 with PBO by TSR genotype####
+#Figure 3: plot of the distribution of LC50 with PBO by TSR genotype####
 ##############################################################################/
 
 pdf(file="output/Figure_X_TSRcomp.pdf",width=6,height=5.5)
