@@ -103,11 +103,16 @@ ycorec<-cumsum(c(0,diff(as.numeric(sumDat$nAChR.81)) != 0))
 ycoor<-1:dim(sumDat)[1] + 2*ycorec
 
 dotchart(sumDat$LC50,
-         groups=sumDat$nAChR.81,
+         groups=sumDat$nAChR.81,gcolor="transparent",
          labels=sumDat$clone.ID,
          xlim=range(sumDat$LC50.PBO,sumDat$LC50)+c(-10,1000),
          col=colovec[as.numeric(sumDat$nAChR.81)],
          log="x",pch="")
+mtext(c(expression("81"^"RR"),
+        expression("81"^"RT"),
+        expression("81"^"TT")),
+      side=2,line=3.5,at=c(13.1,22.1,28.1),adj=0, 
+      col="black",las=2,cex=1.3)
 
 for(i in 1:dim(sumDat)[1]) {
   segments(min(sumDat$LC50.PBO[i],sumDat$LC50[i]),ycoor[i],
