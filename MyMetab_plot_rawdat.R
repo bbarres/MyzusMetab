@@ -76,8 +76,7 @@ legend(log(50),log(2500),pch=21,pt.cex=2,pt.bg=colovec,
        legend=c(expression("81"^"TT"),
                 expression("81"^"RT"),
                 expression("81"^"RR")),
-       y.intersp=1.2,
-       bty="n")
+       y.intersp=1.2,bty="n")
 title(xlab=expression(paste("Thiacloprid LC50 without PBO (",mu,"g/L)")),
       ylab=expression(paste("Thiacloprid LC50 with PBO (",mu,"g/L)")),
       cex.lab=1.4,font=2,line=3.5)
