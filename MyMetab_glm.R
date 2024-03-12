@@ -9,7 +9,6 @@
 source("MyMetab_load.R")
 #we reorder the level of the nAChR.81 factor so that the sensitive genotype
 #is the reference
-sumDat<-sumRsk
 sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("[RR]","[RT]","[TT]"))
 
 
@@ -20,23 +19,23 @@ sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("[RR]","[RT]","[TT]"))
 str(sumDat)
 
 #a function to compute the absolute correlation between pairs of variables
-panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
+panel.cor <- function(x,y,digits=2,prefix="",cex.cor,...)
 {
-  usr <- par("usr"); on.exit(par(usr))
-  par(usr = c(0, 1, 0, 1))
-  r <- abs(cor(x, y,use="pairwise.complete.obs"))
-  txt <- format(c(r, 2), digits=digits)[1]
-  txt <- paste(prefix, txt, sep="")
-  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
-  text(0.5, 0.5, txt, cex = cex.cor * r)
+  usr<-par("usr"); on.exit(par(usr))
+  par(usr=c(0,1,0,1))
+  r<-abs(cor(x,y,use="pairwise.complete.obs"))
+  txt<-format(c(r,2),digits=digits)[1]
+  txt<-paste(prefix,txt,sep="")
+  if(missing(cex.cor)) cex.cor<-0.8/strwidth(txt)
+  text(0.5,0.5,txt,cex=cex.cor * r)
 }
 
 #because we suspect collinearity between genes copy number, we 
 #first look at correlation between the different potential variable
 pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1)
 
-#producing the supplementary figure
-pdf(file="output/Figure_SX_pairs.pdf",width=9,height=7)
+#producing the supplementary figure S3
+pdf(file="output/Figure_S2_pairs.pdf",width=9,height=7)
 colovec=c("green3","orange3","red3")
 pairs(sumDat[,c(6:11)],upper.panel=panel.cor,las=1,col=grey(0.0,1.0),
       bg=colovec[as.numeric(sumDat$nAChR.81)],pch=21,
@@ -119,42 +118,3 @@ step(modT,direction="backward")
 ##############################################################################/
 #END
 ##############################################################################/
-
-
-#modelling the EC50 with PBO
-modPBO.1<-glm(LC50.PBO~nAChR.81*CY3_EXP,data=sumDat,
-              family=stats::gaussian(link="log"))
-summary(modPBO.1) #best model AIC 282
-anova(modPBO.1,test="Chisq")
-plot(modPBO.1)
-modPBO.2<-glm(LC50.PBO~nAChR.81*CY4_EXP,data=sumDat,
-              family=stats::gaussian(link="log"))
-summary(modPBO.2) #AIC 324
-modPBO.3<-glm(LC50.PBO~nAChR.81+CY3_EXP,data=sumDat,
-              family=stats::gaussian(link="log"))
-summary(modPBO.3) #AIC 292
-modPBO.4<-glm(LC50.PBO~nAChR.81+CY4_EXP,data=sumDat,
-              family=stats::gaussian(link="log"))
-summary(modPBO.4) #AIC 322
-anova(modPBO.3,modPBO.1,test="Chisq")
-
-#modelling the difference/ratio with or without PBO
-modDif1<-glm(LC50/LC50.PBO~nAChR.81*CY3_EXP,data=sumDat,
-             family=stats::gaussian(link="identity"))
-summary(modDif1) #best model AIC 76
-anova(modDif1,test="Chisq")
-modDif2<-glm(LC50/LC50.PBO~nAChR.81*CY4_EXP,data=sumDat,
-             family=stats::gaussian(link="identity"))
-summary(modDif2) #AIC 77
-modDif3<-glm(LC50/LC50.PBO~nAChR.81+CY3_EXP,data=sumDat,
-             family=stats::gaussian(link="identity"))
-summary(modDif3) #AIC 80 
-modDif4<-glm(LC50/LC50.PBO~nAChR.81+CY4_EXP,data=sumDat,
-             family=stats::gaussian(link="identity"))
-summary(modDif4) #AIC 81
-anova(modDif3,modDif1,test="Chisq")
-
-#to sum up the best model
-summary(mod1)
-summary(modPBO.1)
-summary(modDif1)
