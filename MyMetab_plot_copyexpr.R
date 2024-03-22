@@ -1,9 +1,6 @@
-#####################################################################
-#####################################################################
-#
-
-
-
+##############################################################################/
+##############################################################################/
+#Plot of the copy number and expression level of CYP6CY3
 ##############################################################################/
 ##############################################################################/
 
@@ -13,13 +10,16 @@ source("MyMetab_load.R")
 #is the reference
 sumDat$nAChR.81<-factor(sumDat$nAChR.81,levels=c("[RR]","[RT]","[TT]"))
 
+
 ##############################################################################/
 ##############################################################################/
 
-error.bar <- function(x, y, upper, lower=upper, length=0.03,COL,...){                         
-  if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))   
+error.bar<-function(x,y,upper,lower=upper,length=0.03,COL,...){                         
+  if(length(x)!=length(y)|
+     length(y)!=length(lower)|
+     length(lower)!=length(upper))   
     stop("vectors must be same length")                                                       
-  arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, lwd=1,col=COL, ...)                  
+  arrows(x,y+upper,x,y-lower,angle=90,code=3,length=length,lwd=1,col=COL, ...)                  
 }
 
 

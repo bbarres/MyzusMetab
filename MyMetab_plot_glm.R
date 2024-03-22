@@ -1,9 +1,8 @@
 ##############################################################################/
 ##############################################################################/
-#Modelling the LD50
+#plot probablement à jeter
 ##############################################################################/
 ##############################################################################/
-
 
 #loading the packages necessary for the analysis
 source("MyMetab_glm.R")
@@ -16,8 +15,8 @@ source("MyMetab_glm.R")
 
 #figure for the mod1
 plot(sumDat$CY3_EXP,log(sumDat$LC50),type="n",las=1)
-points(sumDat[sumDat$nAChR.81=="TT",]$CY3_EXP,
-       log(sumDat[sumDat$nAChR.81=="TT",]$LC50),pch=16,col="red")
+points(sumDat[sumDat$nAChR.81=="[TT]",]$CY3_EXP,
+       log(sumDat[sumDat$nAChR.81=="[TT]",]$LC50),pch=16,col="red")
 points(sumDat[sumDat$nAChR.81=="RT",]$CY3_EXP,
        log(sumDat[sumDat$nAChR.81=="RT",]$LC50),pch=16,col="orange")
 points(sumDat[sumDat$nAChR.81=="RR",]$CY3_EXP,

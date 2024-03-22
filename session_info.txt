@@ -1,4 +1,4 @@
-─ Session info ──────────────────────────────────────────────────────────────────
+─ Session info ───────────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 (2023-06-16 ucrt)
  os       Windows 10 x64 (build 19045)
@@ -8,11 +8,11 @@
  collate  French_France.utf8
  ctype    French_France.utf8
  tz       Europe/Paris
- date     2024-03-13
+ date     2024-03-22
  rstudio  2023.06.0+421 Mountain Hydrangea (desktop)
  pandoc   NA
 
-─ Packages ──────────────────────────────────────────────────────────────────────
+─ Packages ───────────────────────────────────────────────────────────────────────
  package      * version    date (UTC) lib source
  abind          1.4-5      2016-07-21 [1] CRAN (R 4.2.0)
  backports      1.4.1      2021-12-13 [1] CRAN (R 4.2.0)
@@ -32,9 +32,7 @@
  ellipsis       0.3.2      2021-04-29 [1] CRAN (R 4.2.0)
  emmeans      * 1.10.0     2024-01-23 [1] CRAN (R 4.3.2)
  estimability   1.5        2024-02-20 [1] CRAN (R 4.3.3)
- evaluate       0.23       2023-11-01 [1] CRAN (R 4.3.2)
  fansi          1.0.6      2023-12-08 [1] CRAN (R 4.3.2)
- farver         2.1.1      2022-07-06 [1] CRAN (R 4.2.1)
  forcats        1.0.0      2023-01-29 [1] CRAN (R 4.2.2)
  furrr          0.3.1      2022-08-15 [1] CRAN (R 4.2.1)
  future         1.33.1     2023-12-22 [1] CRAN (R 4.3.2)
@@ -45,12 +43,9 @@
  glue           1.7.0      2024-01-09 [1] CRAN (R 4.3.2)
  gtable         0.3.4      2023-08-21 [1] CRAN (R 4.3.1)
  gtools         3.9.5      2023-11-20 [1] CRAN (R 4.3.2)
- highr          0.10       2022-12-22 [1] CRAN (R 4.2.2)
- interactions * 1.1.5      2021-07-02 [1] CRAN (R 4.3.3)
  jtools       * 2.2.2      2023-07-11 [1] CRAN (R 4.3.2)
- knitr          1.45       2023-10-30 [1] CRAN (R 4.3.1)
  labeling       0.4.3      2023-08-29 [1] CRAN (R 4.3.1)
- lattice        0.21-8     2023-04-05 [2] CRAN (R 4.3.1)
+ lattice      * 0.21-8     2023-04-05 [2] CRAN (R 4.3.1)
  lifecycle      1.0.4      2023-11-07 [1] CRAN (R 4.3.2)
  listenv        0.9.1      2024-01-29 [1] CRAN (R 4.3.3)
  magrittr       2.0.3      2022-03-30 [1] CRAN (R 4.2.0)
@@ -91,11 +86,10 @@
  vctrs          0.6.5      2023-12-01 [1] CRAN (R 4.3.2)
  vioplot      * 0.4.0      2022-12-09 [1] CRAN (R 4.2.2)
  withr          3.0.0      2024-01-16 [1] CRAN (R 4.3.2)
- xfun           0.42       2024-02-08 [1] CRAN (R 4.3.3)
  xtable         1.8-4      2019-04-21 [1] CRAN (R 4.2.0)
  zoo          * 1.8-12     2023-04-13 [1] CRAN (R 4.2.3)
 
  [1] C:/Users/benoi/AppData/Local/R/win-library/4.3
  [2] C:/Program Files/R/R-4.3.1/library
 
-─────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────
