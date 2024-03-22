@@ -8,12 +8,13 @@
 library(car)
 library(drc)
 library(emmeans)
+library(gdata)
 library(jtools)
+library(lattice)
 library(medrc)
 library(plotrix)
-library(gdata)
-library(tidyr)
 library(RColorBrewer)
+library(tidyr)
 library(vioplot)
 
 
