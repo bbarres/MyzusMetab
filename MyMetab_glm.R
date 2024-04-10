@@ -4,7 +4,6 @@
 ##############################################################################/
 ##############################################################################/
 
-
 #loading the packages necessary for the analysis
 source("MyMetab_load.R")
 #we reorder the level of the nAChR.81 factor so that the sensitive genotype
@@ -44,17 +43,18 @@ dev.off()
 
 #because the correlation between copy number of the different genes
 #and level of expression of the different genes are correlated, we 
-#pick only one of these variables. Since CY23 is a less good candidate
-#we don't include the related variables either
+#need to pick only one of these variables to include in the model. 
 
 
 ##############################################################################/
-#Actual modeling####
+#Choice of the P450 variable####
 ##############################################################################/
 
-#the complete model including the R81T genotype, one P450 quantification 
-#variable, the genetic group and their interactions. The different P450 
-#quantification variables are tested to select the best one
+#In order to select the most relevant P450 variable, we compare the complete
+#model with the different possible variable. Since CY23 was not involved in 
+#the resistance to neonicotinoid, the two related variable (number of copy 
+#and expression level were not tested). The "best" P450 variable was selected
+#using AIC of the full models (the smaller AIC the better)
 modT<-glm(LC50~nAChR.81*CY3_EXP*genetic.group,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(modT)$aic #AIC 324.388
@@ -68,9 +68,14 @@ modT<-glm(LC50~nAChR.81*CY4_CN*genetic.group,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(modT)$aic #AIC 417.6384
 #the model with the smallest AIC is the one using CY3_EXP variable
-#therefore we select this variable for further analyses
+#therefore we select this variable for further modelling
 
 
+##############################################################################/
+#Model selection using a backward stepwise regression approach####
+##############################################################################/
+
+#First we fit the complete model (including all the interaction)
 modT<-glm(LC50~genetic.group*nAChR.81*CY3_EXP,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(modT)
@@ -96,23 +101,32 @@ mod2<-glm(LC50~nAChR.81+CY3_EXP,data=sumDat,
           family=stats::gaussian(link="log"))
 summary(mod2)$aic #the AIC is greater than the one obtained with mod1
 anova(mod2,mod1,test="Chisq") #the model with the interaction is better
-
-#here are the results for the final model with the nAChR.81 genotype, 
-#the CY3 expression level and their interaction
-summary(mod1)
-#anova(mod1,test="Chisq")
-Anova(mod1,type=c("III"))
-plot(mod1,1)
+#plot to compare the two models
 plot_summs(mod1,mod2,plot.distributions=TRUE,
            model.names=c("with interactions","without interactions"))
 plot_summs(mod1,mod2,plot.distributions=FALSE,
            model.names=c("with interactions","without interactions"))
+#another more straightforward way to do backward elimination
+step(modT,direction="backward")
+
+
+##############################################################################/
+#Final model####
+##############################################################################/
+
+#Here are the results for the final model with the nAChR.81 genotype, 
+#the CY3 expression level and their interaction
+mod1<-glm(LC50~nAChR.81*CY3_EXP,data=sumDat,
+          family=stats::gaussian(link="log"))
+summary(mod1)
+#anova(mod1,test="Chisq")
+Anova(mod1,type=c("III"))
+#plot of residuals versus fitted
+plot(mod1,1)
+#back transformation of the estimated coefficient
 exp(coef(mod1))
 exp(coef(mod1)+1.96*summary(mod1)$coefficients[,2])
 exp(coef(mod1)-1.96*summary(mod1)$coefficients[,2])
-
-#another more straightforward way to do backward elimination
-step(modT,direction="backward")
 
 
 ##############################################################################/
