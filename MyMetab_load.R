@@ -23,7 +23,7 @@ library(vioplot)
 ##############################################################################/
 
 #load the global data set
-dataMyMeta<-read.table(file="data/donnees_Myzus_P450_20201224_4.txt",
+dataMyMeta<-read.table(file="data/bioassayRawData.txt",
                        header=TRUE,sep=";")
 
 #because some concentration were only used for adapting the pesticide dose
