@@ -1,4 +1,5 @@
-[![DOI]()
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10960421.svg)](https://doi.org/10.5281/zenodo.10960421)
+
 # Supporting data and code for: *Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype.
 *This repository contains the R code used for the data analyses and production of the figures of the related article*
 
