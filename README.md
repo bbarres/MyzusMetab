@@ -15,34 +15,49 @@ Insecticide resistance can lead to the repeated application of treatments that a
 ## Datasets
 There are 3 datasets used in this study. The files can be found in the "data" folder. 
 
-+ **bioassayRawData.txt:** the first dataset contains...
++ **bioassayRawData.txt:** the first dataset contains the raw data of the results of the bioassays. 
   + *ana_id*: analysis ID
   + *ech_id*: sample ID
-  + *prog_id*: 
-  + *bioagr_id*: 
-  + *hote_id*: 
-  + *pest_sa_id*: 
-  + *pest_pc_id*: 
-  + *synerg_id*: 
-  + *tech_id*: 
-  + *tps_expo*: 
-  + *bioagr_class_id*: 
-  + *bioagr_class_val*: 
-  + *sex*: 
-  + *dat_test*: 
-  + *rep_test*: 
-  + *lect_id*: 
-  + *test_echec*: 
-  + *dose*: 
-  + *nb_vi*: 
-  + *nb_mb*: 
-  + *nb_mt*: 
-  + *nb_mtot*: 
-  + *nb ind test*: 
+  + *prog_id*: program ID
+  + *bioagr_id*: pest species name
+  + *hote_id*: host name (in French)
+  + *pest_sa_id*: name of the pesticide active substance
+  + *pest_pc_id*: name of the plant protection product
+  + *synerg_id*: name of the synergist used (=AUCUN if none have been used)
+  + *tech_id*: name of the bioassay method used (in French)
+  + *tps_expo*: duration of exposure
+  + *bioagr_class_id*: trait or category evaluated
+  + *bioagr_class_val*: value of the trait or category
+  + *sex*: for species for which the sex as an effect on resistance
+  + *dat_test*: date of the bioassay
+  + *rep_test*: replicate number (if any)
+  + *lect_id*: reading ID of the bioassay (if there is multiple readings)
+  + *test_echec*: was the bioassay successful or not (0=failed, 1=succes)
+  + *dose*: active substance dose (mg/L)
+  + *nb_vi*: number of individual alive
+  + *nb_mb*: number of individual moribund
+  + *nb_mt*: number of dead individual
+  + *nb_mtot*: total number of individual dead or moribund (=nb_mb+nb_mt)
 
 
-+ **summaData.txt:** the second dataset contains...
-  + *bla1*: fsdfsdfgsdfgf
++ **summaData.txt:** the second dataset contains the phenotypic and genotypic information for the tested clones. Each line correspond to a clone. 
+  + *clone-ID*: 
+  + *genetic-group*: 
+  + *nAChR-81*: 
+  + *LC50*: 
+  + *LC50-PBO*: 
+  + *CY3_CN*: 
+  + *CY4_CN*: 
+  + *CY23_CN*: 
+  + *CY3_EXP*: 
+  + *CY4_EXP*: 
+  + *CY23_EXP*: 
+  + *CY3_SE_CN*: 
+  + *CY4_SE_CN*: 
+  + *CY23_SE_CN*: 
+  + *CY3_SE_EXP*: 
+  + *CY4_SE_EXP*: 
+  + *CY23_SE_EXP*: 
 
 + **summaDataResc.txt:** the same dataset as '*summaData.txt*' but rescaled on another clone
   + *bla1*: fsdfsdfgsdfgf
