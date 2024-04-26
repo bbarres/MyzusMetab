@@ -16,8 +16,30 @@ Insecticide resistance can lead to the repeated application of treatments that a
 There are 3 datasets used in this study. The files can be found in the "data" folder. 
 
 + **bioassayRawData.txt:** the first dataset contains...
-  + *bla1*: fsdfsdfgsdfgf
-  + *bla2*: tsdfg
+  + *ana_id*: analysis ID
+  + *ech_id*: sample ID
+  + *prog_id*: 
+  + *bioagr_id*: 
+  + *hote_id*: 
+  + *pest_sa_id*: 
+  + *pest_pc_id*: 
+  + *synerg_id*: 
+  + *tech_id*: 
+  + *tps_expo*: 
+  + *bioagr_class_id*: 
+  + *bioagr_class_val*: 
+  + *sex*: 
+  + *dat_test*: 
+  + *rep_test*: 
+  + *lect_id*: 
+  + *test_echec*: 
+  + *dose*: 
+  + *nb_vi*: 
+  + *nb_mb*: 
+  + *nb_mt*: 
+  + *nb_mtot*: 
+  + *nb ind test*: 
+
 
 + **summaData.txt:** the second dataset contains...
   + *bla1*: fsdfsdfgsdfgf
