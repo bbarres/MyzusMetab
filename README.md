@@ -39,25 +39,24 @@ There are 3 datasets used in this study. The files can be found in the "data" fo
   + *nb_mt*: number of dead individual
   + *nb_mtot*: total number of individual dead or moribund (=nb_mb+nb_mt)
 
-
 + **summaData.txt:** the second dataset contains the phenotypic and genotypic information for the tested clones. Each line correspond to a clone. 
-  + *clone-ID*: 
+  + *clone-ID*: identification number of the clone
   + *genetic-group*: 
-  + *nAChR-81*: 
-  + *LC50*: 
-  + *LC50-PBO*: 
-  + *CY3_CN*: 
-  + *CY4_CN*: 
-  + *CY23_CN*: 
-  + *CY3_EXP*: 
-  + *CY4_EXP*: 
-  + *CY23_EXP*: 
-  + *CY3_SE_CN*: 
-  + *CY4_SE_CN*: 
-  + *CY23_SE_CN*: 
-  + *CY3_SE_EXP*: 
-  + *CY4_SE_EXP*: 
-  + *CY23_SE_EXP*: 
+  + *nAChR-81*: genotype at the R81T loci. 'RR' for homozygous sensitive, 'TT' for homozygous resistant and 'RT' for heterozygous
+  + *LC50*: thiaclopride median lethal dose for the clone
+  + *LC50-PBO*: thiaclopride + PBO median lethal dose for the clone
+  + *CY3_CN*: CYP6CY3 gene copy number evaluated with quantitative PCR
+  + *CY4_CN*: CYP6CY4 gene copy number evaluated with quantitative PCR
+  + *CY23_CN*: CYP6CY23 gene copy number evaluated with quantitative PCR
+  + *CY3_EXP*: CYP6CY3 expression level evaluated with RT-quantitative PCR
+  + *CY4_EXP*: CYP6CY4 expression level evaluated with RT-quantitative PCR
+  + *CY23_EXP*: CYP6CY23 expression level evaluated with RT-quantitative PCR
+  + *CY3_SE_CN*: Standard error of CYP6CY3 gene copy number evaluated with RT-quantitative PCR
+  + *CY4_SE_CN*: Standard error of CYP6CY4 gene copy number evaluated with RT-quantitative PCR
+  + *CY23_SE_CN*: Standard error of CYP6CY23 gene copy number evaluated with RT-quantitative PCR
+  + *CY3_SE_EXP*: Standard error of CYP6CY3 expression level evaluated with RT-quantitative PCR
+  + *CY4_SE_EXP*: Standard error of CYP6CY4 expression level evaluated with RT-quantitative PCR
+  + *CY23_SE_EXP*: Standard error of CYP6CY23 expression level evaluated with RT-quantitative PCR
 
 + **summaDataResc.txt:** the same dataset as '*summaData.txt*' but rescaled on another clone
   + *bla1*: fsdfsdfgsdfgf
@@ -65,13 +64,20 @@ There are 3 datasets used in this study. The files can be found in the "data" fo
   
 ## R scripts
 + **MyMetab_load.R:** the script to load the different datasets and packages in the environment
-+ **MyMetab_cibleR_reg.R:** 
 + **MyMetab_drc.R:** 
 + **MyMetab_glm.R:**
-+ **MyMetab_metabR_reg.R:** 
-+ **MyMetab_plot_glm.R:** 
-+ **MyMetab_plot_rawdat.R:** 
++ **MyMetab_reg_NTSR.R:** 
++ **MyMetab_test_TSRcomp.R:** 
++ **MyMetab_plot_Fig1_LD50.R:** 
++ **MyMetab_plot_Fig2_S1_copyexpr.R:** 
++ **MyMetab_plot_Fig3_TSRcomp.R:** 
++ **MyMetab_plot_Fig4_NTSRprop.R:** 
 
 ## Citation
-You will soon be able (hopefully) to cite the related study as follow: 
+You will (hopefully) soon be able to cite the related study as follow: 
++ Barrès B., Dutech C., Saint-Jean G., Bodénès C., Burban C., Fievet V., Lepoittevin C., Garnier-Géré P. and Desprez-Loustau M.-L. [*Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype. ***Submitted to Pest Management Science***.](https://)
+ 
+
+If you want to use (some of) the code found on this page or if you want to cite this repository: 
++ Benoit Barrès. [Supporting data and code for: *Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype. Zenodo.](https://doi.org/10.5281/zenodo.10960421)
 
