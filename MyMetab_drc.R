@@ -48,7 +48,7 @@ plot(log(REZcont$LD50.PBO),ylab="Death rate")
 
 
 ##############################################################################/
-#comparing the LD50 with or without PBO####
+#Computing and comparing the LD50 with or without PBO####
 ##############################################################################/
 
 # #if you want the clean data set by removing problematic date

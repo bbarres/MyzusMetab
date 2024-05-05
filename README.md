@@ -58,15 +58,15 @@ There are 2 datasets used in this study. The files can be found in the "data" fo
 
 
 ## R scripts
-+ **MyMetab_load.R:** the script to load the different datasets and packages in the environment
-+ **MyMetab_drc.R:** 
-+ **MyMetab_glm.R:**
-+ **MyMetab_reg_NTSR.R:** 
-+ **MyMetab_test_TSRcomp.R:** 
-+ **MyMetab_plot_Fig1_LD50.R:** 
-+ **MyMetab_plot_Fig2_S1_copyexpr.R:** 
-+ **MyMetab_plot_Fig3_TSRcomp.R:** 
-+ **MyMetab_plot_Fig4_NTSRprop.R:** 
++ **MyMetab_load.R:** the script to load the different datasets and packages in the environment. This must be run before any other scripts. 
++ **MyMetab_drc.R:** this script analyses the raw data of the bioassay experiment (see 'bioassayRawData.txt' data file) to compute the thiaclorpide LD50 for each clone with or without the addition of PBO. It produce two files: a pdf files with a page for each clone summarizing the results of the dose-response analyses ('figure_by_clone.pdf') and a table which gives for each clone: the LD50, the standard error and the mean number of individual tested per dose with or whithout PBO, as well as the results of test comparing the LD50 values with and whithout PBO ('results_bioassay.txt').
++ **MyMetab_glm.R:** this script described the building of the glm to model the LD50 as a function of variable of interests. The first step consists in investigating the correlation between P450 quantitative variables. This step also produces the supplementary figure S2 file ('Figure_S2_pairs.pdf'). The second step consists in selecting the best P450 quantitative variables within the full model. Finally, a backward stepwise regression approach is used to select the model. 
++ **MyMetab_reg_NTSR.R:** this script described the regression of CYP6CY3 expression against metabolic resistant proportion. This consists in comparing different models with a maximum threshold value. This modelling is done only on homozygous sensitive clones. 
++ **MyMetab_test_TSRcomp.R:** this script is used to investigate the effect of the R81T genotype on the LC50 values, with or whithout PBO. 
++ **MyMetab_plot_Fig1_LD50.R:** the script to produce the Figure 1A 'correlation between LD50 with or without PBO' and Figure 1B 'LC50 dumbellplot with or without PBO'. 
++ **MyMetab_plot_Fig2_S1_copyexpr.R:** the script to produce the Figure 2 and Fugure S1 that illustrate the copy number and expression levels of CYP6 genes for each clones. 
++ **MyMetab_plot_Fig3_TSRcomp.R:** the script to produce the Figure 3 depicting the distribution of LC50 with PBO by TSR genotype
++ **MyMetab_plot_Fig4_NTSRprop.R:** the script to produce the Figure 4 depicting the evolution of the proportion of metabolic resistance as a function of CYP6CY3
 
 
 ## Citation

@@ -29,7 +29,7 @@ error.bar<-function(x,y,upper,lower=upper,length=0.03,COL,...){
 #Figure 2####
 ##############################################################################/
 
-pdf(file="Figure 2 Copy number and expression level CY3 CY4.pdf",
+pdf(file="output/Figure_2_CNandEXP_CY2CY3.pdf",
     width=7,height=5)
 par(mfrow=c(2,2),mar=(c(6, 4, 2, 2) + 0.1))
 espace_entre_barre<-c(0,rep(0.3,11),0.9,
@@ -112,7 +112,7 @@ dev.off()
 #Figure S1####
 ##############################################################################/
 
-pdf(file="Figure S1 Copy number and expression level CY23.pdf",
+pdf(file="output/Figure_S1_CNandEXP_CY23.pdf",
     width=4,height=6)
 par(mfrow=c(2,1),mar=(c(6, 4, 1, 2) + 0.1))
 espace_entre_barre<-c(0,rep(0.3,11),0.9,rep(0.3,6),0.9,rep(0.3,3))
