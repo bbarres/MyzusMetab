@@ -52,5 +52,17 @@ modplot<-Micha.m2
 
 
 ##############################################################################/
+#Assessing the equivalent model with CYP6CY4 expression covariate####
+##############################################################################/
+
+#Michaelis-Menten model with 2 parameters
+Micha.m2<-drm(sumDatRR$propMeta~sumDatRR$CY4_EXP,
+              data=sumDatRR,fct=MM.2())
+plot(Micha.m2,type="confidence",log="",col="blue",lwd=3,lty=2)
+plot(Micha.m2,type="obs",add=TRUE)
+summary(Micha.m2)
+
+
+##############################################################################/
 #END
 ##############################################################################/
