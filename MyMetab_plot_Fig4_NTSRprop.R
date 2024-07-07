@@ -6,6 +6,7 @@
 
 #first we need to run the regression analysis
 source("MyMetab_reg_NTSR.R")
+source("MyMetab_reg_NTSR.R")
 
 
 ##############################################################################/
