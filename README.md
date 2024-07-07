@@ -71,7 +71,7 @@ There are 2 datasets used in this study. The files can be found in the "data" fo
 
 ## Citation
 You will (hopefully) soon be able to cite the related study as follow: 
-+ Mottet M., Caddoux L., Fontaine S., Plantamp C., Bass C. and Barrès B. [*Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype. ***Submitted to Pest Management Science***.](https://)
++ Mottet M., Caddoux L., Fontaine S., Plantamp C., Bass C. and Barrès B. [*Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype. ***Accepted for publication in Pest Management Science***.](https://)
  
 
 If you want to use (some of) the code found on this page or if you want to cite this repository: 
