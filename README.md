@@ -69,6 +69,10 @@ There are 2 datasets used in this study. The files can be found in the "data" fo
 + **MyMetab_plot_Fig4_NTSRprop.R:** the script to produce the Figure 4 depicting the evolution of the proportion of metabolic resistance as a function of CYP6CY3
 
 
+## R session info
+For reproducibility purpose, you will find all the information about the versions of R, Rstudio, OS etc., as well as the list and version number of the packages used at the time of publishing this script in the **session_info.txt** file.
+
+
 ## Citation
 You can cite the related study as follow: 
 + Mottet M., Caddoux L., Fontaine S., Plantamp C., Bass C. and Barrès B. [*Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype. *Pest Management Science*, 2024. doi.org/10.1002/ps.8316.](https://doi.org/10.1002/ps.8316)
