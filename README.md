@@ -39,7 +39,7 @@ There are 2 datasets used in this study. The files can be found in the "data" fo
 
 + **summaData.txt:** the second dataset contains the phenotypic and genotypic information for the tested clones. Each line correspond to a clone. 
   + *clone-ID*: identification number of the clone
-  + *genetic-group*: 
+  + *genetic-group*: the Neutral genetic cluster informatio. Either primary host or secondary host
   + *nAChR-81*: genotype at the R81T loci. 'RR' for homozygous sensitive, 'TT' for homozygous resistant and 'RT' for heterozygous
   + *LC50*: thiaclopride median lethal dose for the clone
   + *LC50-PBO*: thiaclopride + PBO median lethal dose for the clone
