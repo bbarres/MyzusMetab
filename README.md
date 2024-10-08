@@ -75,7 +75,7 @@ For reproducibility purpose, you will find all the information about the version
 
 ## Citation
 You can cite the related study as follow: 
-+ Mottet M., Caddoux L., Fontaine S., Plantamp C., Bass C. and Barrès B. [*Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype. *Pest Management Science*, 2024. doi.org/10.1002/ps.8316.](https://doi.org/10.1002/ps.8316)
++ Mottet M., Caddoux L., Fontaine S., Plantamp C., Bass C. and Barrès B. [*Myzus persicae* resistance to neonicotinoids - unravelling the contribution of different mechanisms to phenotype. *Pest Management Science*, 80:5852-5863, 2024. doi.org/10.1002/ps.8316.](https://doi.org/10.1002/ps.8316)
  
 
 If you want to use (some of) the code found on this page or if you want to cite this repository: 
